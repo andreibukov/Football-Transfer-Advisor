@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Club } from "../types/club";
 import { Player } from "../types/player";
 import { createClub, getAllClubs } from "../services/clubService";
@@ -23,7 +23,7 @@ const attributeFields: Array<{ key: keyof Player; label: string }> = [
 const defaultClub: Club = {
     name: "",
     league: "",
-    budget: 50000000,
+    budget: 0,
     preferredStyle: "",
 };
 
@@ -47,8 +47,6 @@ const defaultPlayer: Player = {
     positioning: 75,
     workRate: 75,
 };
-
-const formatCurrency = (value: number) => `EUR ${value.toLocaleString()}`;
 
 type Feedback = {
     type: "success" | "error" | "warning";
@@ -116,13 +114,6 @@ export default function FootballDataPage() {
         loadData();
     }, []);
 
-    const clubsByLeague = useMemo(() => {
-        return clubs.reduce<Record<string, number>>((accumulator, club) => {
-            accumulator[club.league] = (accumulator[club.league] ?? 0) + 1;
-            return accumulator;
-        }, {});
-    }, [clubs]);
-
     const handleClubSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setFeedback(null);
@@ -133,14 +124,6 @@ export default function FootballDataPage() {
             setFeedback({
                 type: "error",
                 message: "A club with this name already exists.",
-            });
-            return;
-        }
-
-        if (clubForm.budget <= 0) {
-            setFeedback({
-                type: "error",
-                message: "Club budget must be greater than zero.",
             });
             return;
         }
@@ -158,7 +141,7 @@ export default function FootballDataPage() {
             setFeedback({
                 type: "success",
                 message:
-                    "Club saved and ontology relations were created automatically.",
+                    `${clubName} was added. Ontology relations playsInLeague and prefersPlayingStyle were created automatically.`,
             });
         } catch {
             setFeedback({
@@ -231,7 +214,7 @@ export default function FootballDataPage() {
             setFeedback({
                 type: "success",
                 message:
-                    "Player saved and ontology relations were created automatically.",
+                    `${playerName} was added. Ontology relations playsForClub and hasPosition were created automatically.`,
             });
         } catch {
             setFeedback({
@@ -266,9 +249,7 @@ export default function FootballDataPage() {
                     </p>
                 </div>
 
-                <span className="badge">
-                    {clubs.length} clubs / {players.length} players
-                </span>
+                <span className="badge">Add data, expand ontology knowledge</span>
             </header>
 
             {feedback && (
@@ -303,7 +284,9 @@ export default function FootballDataPage() {
                         Clubs are DB records. League and preferred style are
                         selected from ontology concepts. Saving a club also
                         creates ontology knowledge such as playsInLeague and
-                        prefersPlayingStyle.
+                        prefersPlayingStyle. The transfer budget is set later in
+                        Recommend Player because it belongs to a specific search,
+                        not to the club record.
                     </p>
 
                     <form className="form" onSubmit={handleClubSubmit}>
@@ -364,22 +347,6 @@ export default function FootballDataPage() {
                             </label>
                         </div>
 
-                        <label>
-                            Budget
-                            <input
-                                min={1}
-                                type="number"
-                                value={clubForm.budget}
-                                onChange={(event) =>
-                                    setClubForm({
-                                        ...clubForm,
-                                        budget: Number(event.target.value),
-                                    })
-                                }
-                                required
-                            />
-                        </label>
-
                         <button disabled={isSavingClub} type="submit">
                             {isSavingClub ? "Saving club..." : "Add Club"}
                         </button>
@@ -387,18 +354,34 @@ export default function FootballDataPage() {
                 </section>
 
                 <section className="page-card">
-                    <h2 className="section-title">Club Overview</h2>
+                    <h2 className="section-title">What happens after saving?</h2>
                     <p className="section-subtitle">
-                        Current database clubs grouped through their league field.
+                        The page updates the database and the ontology overlay at
+                        the same time.
                     </p>
 
                     <div className="ontology-list">
-                        {Object.entries(clubsByLeague).map(([league, count]) => (
-                            <article key={league} className="ontology-item">
-                                <h3 style={{ marginBottom: "8px" }}>{league}</h3>
-                                <p className="muted">{count} clubs</p>
-                            </article>
-                        ))}
+                        <article className="ontology-item">
+                            <h3 style={{ marginBottom: "8px" }}>Club</h3>
+                            <p className="muted">
+                                Creates a club DB record and ontology relations
+                                to league and preferred playing style.
+                            </p>
+                        </article>
+                        <article className="ontology-item">
+                            <h3 style={{ marginBottom: "8px" }}>Player</h3>
+                            <p className="muted">
+                                Creates a player DB record and ontology relations
+                                to club and position.
+                            </p>
+                        </article>
+                        <article className="ontology-item">
+                            <h3 style={{ marginBottom: "8px" }}>Recommendations</h3>
+                            <p className="muted">
+                                New players become available in Recommend Player
+                                after they are saved.
+                            </p>
+                        </article>
                     </div>
                 </section>
             </div>
@@ -532,48 +515,6 @@ export default function FootballDataPage() {
                         {isSavingPlayer ? "Saving player..." : "Add Player"}
                     </button>
                 </form>
-            </section>
-
-            <section className="page-card">
-                <h2 className="section-title">Players</h2>
-                {players.length === 0 && (
-                    <div className="empty-state">No players found.</div>
-                )}
-
-                <div className="recommendation-list">
-                    {players.map((player) => (
-                        <article key={player.id} className="recommendation-card">
-                            <div className="rank-badge">
-                                {player.name.slice(0, 2).toUpperCase()}
-                            </div>
-                            <div>
-                                <h3 className="section-title">{player.name}</h3>
-                                <p className="muted">
-                                    {player.position} at {player.currentClub} in{" "}
-                                    {player.league}
-                                </p>
-                                <ul className="info-list">
-                                    <li>
-                                        <span>Age</span>
-                                        <strong>{player.age}</strong>
-                                    </li>
-                                    <li>
-                                        <span>Market value</span>
-                                        <strong>
-                                            {formatCurrency(player.marketValue)}
-                                        </strong>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="score-panel">
-                                <span className="score-value">
-                                    {player.workRate}
-                                </span>
-                                <span className="score-label">Work rate</span>
-                            </div>
-                        </article>
-                    ))}
-                </div>
             </section>
         </div>
     );

@@ -94,8 +94,6 @@ const summarizeMessage = (message: string) => {
 export default function AgentLogsPage() {
     const [logs, setLogs] = useState<AgentLog[]>([]);
     const [selectedAgent, setSelectedAgent] = useState("");
-    const [selectedPerformative, setSelectedPerformative] = useState("");
-    const [searchTerm, setSearchTerm] = useState("");
     const [showNewestFirst, setShowNewestFirst] = useState(true);
     const [autoRefresh, setAutoRefresh] = useState(true);
     const [expandedLogId, setExpandedLogId] = useState<number | null>(null);
@@ -137,38 +135,17 @@ export default function AgentLogsPage() {
         [logs]
     );
 
-    const performatives = useMemo(
-        () => uniqueValues(logs.map((log) => log.performative)),
-        [logs]
-    );
-
     const filteredLogs = useMemo(() => {
-        const normalizedSearchTerm = searchTerm.trim().toLowerCase();
-
         return logs
             .filter((log) => {
                 const sender = getAgentDisplayName(log.senderAgent);
                 const receiver = getAgentDisplayName(log.receiverAgent);
 
-                const matchesAgent =
+                return (
                     selectedAgent === "" ||
                     sender === selectedAgent ||
-                    receiver === selectedAgent;
-
-                const matchesPerformative =
-                    selectedPerformative === "" ||
-                    log.performative === selectedPerformative;
-
-                const matchesSearch =
-                    normalizedSearchTerm === "" ||
-                    log.messageContent
-                        .toLowerCase()
-                        .includes(normalizedSearchTerm) ||
-                    sender.toLowerCase().includes(normalizedSearchTerm) ||
-                    receiver.toLowerCase().includes(normalizedSearchTerm) ||
-                    getStepTitle(log).toLowerCase().includes(normalizedSearchTerm);
-
-                return matchesAgent && matchesPerformative && matchesSearch;
+                    receiver === selectedAgent
+                );
             })
             .sort((firstLog, secondLog) => {
                 const firstTime = new Date(firstLog.createdAt).getTime();
@@ -178,13 +155,7 @@ export default function AgentLogsPage() {
                     ? secondTime - firstTime
                     : firstTime - secondTime;
             });
-    }, [
-        logs,
-        searchTerm,
-        selectedAgent,
-        selectedPerformative,
-        showNewestFirst,
-    ]);
+    }, [logs, selectedAgent, showNewestFirst]);
 
     const latestLog = logs.reduce<AgentLog | null>((latest, log) => {
         if (!latest) {
@@ -197,19 +168,8 @@ export default function AgentLogsPage() {
             : latest;
     }, null);
 
-    const activeConversations = uniqueValues(
-        logs.map(
-            (log) =>
-                `${getAgentDisplayName(log.senderAgent)} -> ${getAgentDisplayName(
-                    log.receiverAgent
-                )}`
-        )
-    );
-
     const clearFilters = () => {
         setSelectedAgent("");
-        setSelectedPerformative("");
-        setSearchTerm("");
     };
 
     return (
@@ -217,10 +177,33 @@ export default function AgentLogsPage() {
             <div className="page-card">
                 <h1 className="page-title">Agent ACL Timeline</h1>
                 <p>
-                    Follow the JADE agent conversation behind each transfer
-                    recommendation.
+                    This page shows the agent conversation that happens after a
+                    recommendation request. Use it as a simple audit trail: who
+                    asked, who answered, and what information was exchanged.
                 </p>
             </div>
+
+            <section className="page-card">
+                <h2 className="section-title">How to read the flow</h2>
+                <div className="grid-auto">
+                    <div className="metric-card">
+                        <p className="metric-value">1</p>
+                        <p className="metric-label">Backend sends transfer need</p>
+                    </div>
+                    <div className="metric-card">
+                        <p className="metric-value">2</p>
+                        <p className="metric-label">Club agent asks for context</p>
+                    </div>
+                    <div className="metric-card">
+                        <p className="metric-value">3</p>
+                        <p className="metric-label">Ontology agent explains knowledge</p>
+                    </div>
+                    <div className="metric-card">
+                        <p className="metric-value">4</p>
+                        <p className="metric-label">Recommendation agent returns result</p>
+                    </div>
+                </div>
+            </section>
 
             <section
                 style={{
@@ -241,11 +224,6 @@ export default function AgentLogsPage() {
                 </div>
 
                 <div className="page-card">
-                    <h2>{activeConversations.length}</h2>
-                    <p>Agent connections</p>
-                </div>
-
-                <div className="page-card">
                     <h2>{latestLog ? formatDateTime(latestLog.createdAt) : "-"}</h2>
                     <p>Latest activity</p>
                 </div>
@@ -262,7 +240,7 @@ export default function AgentLogsPage() {
                     }}
                 >
                     <label>
-                        Agent
+                        Show messages for agent
                         <select
                             value={selectedAgent}
                             onChange={(event) =>
@@ -277,36 +255,6 @@ export default function AgentLogsPage() {
                                 </option>
                             ))}
                         </select>
-                    </label>
-
-                    <label>
-                        Performative
-                        <select
-                            value={selectedPerformative}
-                            onChange={(event) =>
-                                setSelectedPerformative(event.target.value)
-                            }
-                            style={{ width: "100%", marginTop: "6px" }}
-                        >
-                            <option value="">All performatives</option>
-                            {performatives.map((performative) => (
-                                <option key={performative} value={performative}>
-                                    {performative}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
-
-                    <label>
-                        Search
-                        <input
-                            value={searchTerm}
-                            onChange={(event) =>
-                                setSearchTerm(event.target.value)
-                            }
-                            placeholder="Message or agent"
-                            style={{ width: "100%", marginTop: "6px" }}
-                        />
                     </label>
 
                     <label>
@@ -347,11 +295,7 @@ export default function AgentLogsPage() {
                     </button>
 
                     <button
-                        disabled={
-                            selectedAgent === "" &&
-                            selectedPerformative === "" &&
-                            searchTerm === ""
-                        }
+                        disabled={selectedAgent === ""}
                         onClick={clearFilters}
                         type="button"
                         style={{ backgroundColor: "#475569" }}
@@ -359,38 +303,6 @@ export default function AgentLogsPage() {
                         Clear Filters
                     </button>
                 </div>
-            </section>
-
-            <section
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-                    gap: "16px",
-                    marginBottom: "16px",
-                }}
-            >
-                {agents.map((agent) => {
-                    const profile = getAgentProfile(agent);
-                    const sentCount = logs.filter(
-                        (log) => getAgentDisplayName(log.senderAgent) === agent
-                    ).length;
-                    const receivedCount = logs.filter(
-                        (log) => getAgentDisplayName(log.receiverAgent) === agent
-                    ).length;
-
-                    return (
-                        <article key={agent} className="page-card">
-                            <h2 style={{ marginTop: 0 }}>{agent}</h2>
-                            <p>
-                                <strong>{profile.role}</strong>
-                            </p>
-                            <p>{profile.responsibility}</p>
-                            <p style={{ color: "#64748b" }}>
-                                Sent {sentCount} / Received {receivedCount}
-                            </p>
-                        </article>
-                    );
-                })}
             </section>
 
             {filteredLogs.length === 0 && (
@@ -431,6 +343,9 @@ export default function AgentLogsPage() {
                                 {getAgentDisplayName(log.senderAgent)} sends ACL{" "}
                                 {getPerformativeMeta(log.performative).label} to{" "}
                                 {getAgentDisplayName(log.receiverAgent)}
+                            </p>
+                            <p className="muted">
+                                {getAgentProfile(log.senderAgent).responsibility}
                             </p>
 
                             <span
