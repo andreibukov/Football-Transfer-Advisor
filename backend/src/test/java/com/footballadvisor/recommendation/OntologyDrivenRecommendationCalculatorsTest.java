@@ -39,6 +39,7 @@ class OntologyDrivenRecommendationCalculatorsTest {
     private final BudgetMatchCalculator budgetMatchCalculator = new BudgetMatchCalculator();
     private final AgeMatchCalculator ageMatchCalculator = new AgeMatchCalculator(scoringWeightProvider);
     private final CandidateEligibilityService candidateEligibilityService = new CandidateEligibilityService();
+    private final FinancialViabilityService financialViabilityService = new FinancialViabilityService(scoringWeightProvider);
 
     @Test
     void calculatesRelatedPositionFromOntologyParentClass() {
@@ -109,6 +110,7 @@ class OntologyDrivenRecommendationCalculatorsTest {
         assertThat(weights.budgetMatchWeight()).isEqualTo(0.15);
         assertThat(weights.ageMatchWeight()).isEqualTo(0.15);
         assertThat(scoringWeightProvider.getAgePenaltyPerYear()).isEqualTo(10);
+        assertThat(scoringWeightProvider.getMinimumBudgetMatchForRecommendation()).isEqualTo(25);
     }
 
     @Test
@@ -158,6 +160,21 @@ class OntologyDrivenRecommendationCalculatorsTest {
         );
 
         assertThat(score).isEqualTo(93.75);
+    }
+
+    @Test
+    void filtersFinanciallyUnrealisticRecommendationsUsingOntologyThreshold() {
+        assertThat(financialViabilityService.isViable(RecommendationScore.builder()
+                .budgetMatch(0)
+                .build())).isFalse();
+
+        assertThat(financialViabilityService.isViable(RecommendationScore.builder()
+                .budgetMatch(20)
+                .build())).isFalse();
+
+        assertThat(financialViabilityService.isViable(RecommendationScore.builder()
+                .budgetMatch(25)
+                .build())).isTrue();
     }
 
     @Test

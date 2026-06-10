@@ -4,6 +4,7 @@ import com.footballadvisor.dto.RecommendationResponse;
 import com.footballadvisor.entity.*;
 import com.footballadvisor.ontology.OntologyQueryService;
 import com.footballadvisor.recommendation.CandidateEligibilityService;
+import com.footballadvisor.recommendation.FinancialViabilityService;
 import com.footballadvisor.recommendation.RecommendationEngine;
 import com.footballadvisor.recommendation.RecommendationScore;
 import com.footballadvisor.repository.*;
@@ -24,6 +25,7 @@ public class RecommendationService {
     private final RecommendationReasonRepository recommendationReasonRepository;
     private final RecommendationEngine recommendationEngine;
     private final CandidateEligibilityService candidateEligibilityService;
+    private final FinancialViabilityService financialViabilityService;
     private final OntologyQueryService ontologyQueryService;
 
     public List<RecommendationResponse> generateRecommendations(Long transferNeedId) {
@@ -50,6 +52,10 @@ public class RecommendationService {
             RecommendationScore score = recommendationEngine.calculate(transferNeed, player);
 
             if (score.getTotalScore() <= 0) {
+                continue;
+            }
+
+            if (!financialViabilityService.isViable(score)) {
                 continue;
             }
 

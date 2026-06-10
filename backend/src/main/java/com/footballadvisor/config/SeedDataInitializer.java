@@ -47,7 +47,28 @@ public class SeedDataInitializer implements CommandLineRunner {
         saveClub("Inter", "Serie A", 85000000, "BalancedBuildUp");
         saveClub("Napoli", "Serie A", 70000000, "CounterAttacking");
         saveClub("AC Milan", "Serie A", 80000000, "VerticalTransitions");
+        saveClub("Atalanta", "Serie A", 50000000, "HighPressing");
+        saveClub("Bologna", "Serie A", 35000000, "BalancedBuildUp");
+        saveClub("Roma", "Serie A", 45000000, "BalancedBuildUp");
         saveClub("Paris Saint-Germain", "Ligue 1", 150000000, "Possession");
+        saveClub("Monaco", "Ligue 1", 60000000, "VerticalTransitions");
+        saveClub("Lille", "Ligue 1", 35000000, "HighPressing");
+        saveClub("Marseille", "Ligue 1", 45000000, "CounterAttacking");
+        saveClub("Brighton", "Premier League", 55000000, "BalancedBuildUp");
+        saveClub("Bournemouth", "Premier League", 40000000, "VerticalTransitions");
+        saveClub("Brentford", "Premier League", 35000000, "LowBlockCounter");
+        saveClub("Fulham", "Premier League", 30000000, "BalancedBuildUp");
+        saveClub("West Ham", "Premier League", 45000000, "CounterAttacking");
+        saveClub("Villarreal", "La Liga", 35000000, "VerticalTransitions");
+        saveClub("Valencia", "La Liga", 25000000, "LowBlockCounter");
+        saveClub("Girona", "La Liga", 30000000, "Possession");
+        saveClub("Borussia Dortmund", "Bundesliga", 75000000, "HighPressing");
+        saveClub("Stuttgart", "Bundesliga", 30000000, "VerticalTransitions");
+        saveClub("Benfica", "Primeira Liga", 45000000, "Possession");
+        saveClub("Porto", "Primeira Liga", 35000000, "BalancedBuildUp");
+        saveClub("Sporting CP", "Primeira Liga", 45000000, "HighPressing");
+        saveClub("Ajax", "Eredivisie", 30000000, "Possession");
+        saveClub("PSV", "Eredivisie", 35000000, "HighPressing");
     }
 
     private void seedPlayers() {
@@ -83,18 +104,80 @@ public class SeedDataInitializer implements CommandLineRunner {
                 91, 92, 80, 81, 87, 80, 90, 82, 68, 45, 82, 79);
         savePlayer("Rafael Leao", 27, "AC Milan", "Serie A", "LeftWinger", 80000000,
                 93, 91, 78, 79, 88, 84, 91, 78, 76, 42, 83, 74);
-        savePlayer("William Saliba", 25, "Arsenal", "Premier League", "CentreBack", 85000000,
+        savePlayer("William Saliba", 25, "Arsenal", "Premier League", "CenterBack", 85000000,
                 78, 76, 78, 75, 80, 45, 70, 86, 89, 90, 88, 82);
-        savePlayer("Alessandro Bastoni", 27, "Inter", "Serie A", "CentreBack", 70000000,
+        savePlayer("Alessandro Bastoni", 27, "Inter", "Serie A", "CenterBack", 70000000,
                 72, 73, 83, 80, 81, 48, 68, 84, 86, 88, 86, 80);
         savePlayer("Achraf Hakimi", 27, "Paris Saint-Germain", "Ligue 1", "RightBack", 65000000,
                 93, 92, 82, 80, 84, 76, 86, 89, 76, 78, 83, 86);
         savePlayer("Theo Hernandez", 28, "AC Milan", "Serie A", "LeftBack", 60000000,
                 92, 90, 80, 78, 83, 78, 85, 86, 81, 75, 84, 83);
+        savePlayer("Lewis Dunk", 34, "Brighton", "Premier League", "CenterBack", 10000000,
+                55, 52, 74, 72, 70, 42, 50, 78, 84, 83, 82, 76);
+        savePlayer("Joachim Andersen", 30, "Fulham", "Premier League", "CenterBack", 18000000,
+                62, 60, 76, 74, 73, 40, 55, 79, 83, 84, 82, 78);
+        savePlayer("Milos Kerkez", 22, "Bournemouth", "Premier League", "LeftBack", 28000000,
+                84, 86, 72, 70, 76, 55, 78, 84, 70, 72, 76, 82);
+        savePlayer("Aaron Wan-Bissaka", 28, "West Ham", "Premier League", "RightBack", 18000000,
+                80, 82, 70, 66, 72, 48, 74, 82, 73, 86, 80, 82);
+        savePlayer("Vitaly Janelt", 28, "Brentford", "Premier League", "DefensiveMidfielder", 12000000,
+                68, 70, 76, 73, 75, 54, 68, 83, 78, 80, 79, 84);
+        savePlayer("Andreas Pereira", 30, "Fulham", "Premier League", "AttackingMidfielder", 18000000,
+                74, 76, 80, 79, 82, 72, 78, 77, 66, 56, 74, 76);
+        savePlayer("Jarrod Bowen", 29, "West Ham", "Premier League", "RightWinger", 42000000,
+                82, 84, 76, 75, 81, 83, 80, 84, 73, 58, 82, 86);
+        savePlayer("Bryan Mbeumo", 26, "Brentford", "Premier League", "RightWinger", 35000000,
+                84, 85, 74, 75, 80, 82, 79, 82, 72, 55, 80, 84);
+        savePlayer("Yoane Wissa", 29, "Brentford", "Premier League", "Striker", 22000000,
+                82, 83, 68, 69, 76, 81, 77, 80, 74, 48, 80, 82);
+        savePlayer("Tom Cairney", 35, "Fulham", "Premier League", "CentralMidfielder", 8000000,
+                58, 55, 80, 79, 78, 62, 70, 68, 65, 58, 74, 70);
+        savePlayer("Mikel Oyarzabal", 29, "Real Sociedad", "La Liga", "LeftWinger", 40000000,
+                78, 79, 80, 81, 84, 82, 80, 78, 72, 55, 82, 80);
+        savePlayer("Alex Baena", 25, "Villarreal", "La Liga", "AttackingMidfielder", 35000000,
+                76, 78, 83, 84, 85, 76, 82, 78, 65, 52, 76, 78);
+        savePlayer("Pepelu", 27, "Valencia", "La Liga", "DefensiveMidfielder", 15000000,
+                66, 68, 78, 76, 77, 58, 68, 82, 74, 78, 80, 82);
+        savePlayer("Ivan Martin", 27, "Girona", "La Liga", "CentralMidfielder", 14000000,
+                70, 72, 79, 78, 80, 66, 74, 78, 68, 62, 76, 78);
+        savePlayer("Artem Dovbyk", 29, "Roma", "Serie A", "Striker", 32000000,
+                76, 78, 68, 70, 76, 84, 74, 78, 86, 48, 83, 78);
+        savePlayer("Ademola Lookman", 28, "Atalanta", "Serie A", "LeftWinger", 45000000,
+                86, 88, 75, 76, 83, 84, 86, 80, 70, 48, 82, 78);
+        savePlayer("Riccardo Orsolini", 29, "Bologna", "Serie A", "RightWinger", 18000000,
+                78, 80, 74, 75, 80, 78, 80, 76, 68, 50, 77, 74);
+        savePlayer("Ederson", 26, "Atalanta", "Serie A", "CentralMidfielder", 35000000,
+                78, 80, 78, 76, 80, 72, 78, 86, 82, 78, 80, 86);
+        savePlayer("Angel Gomes", 25, "Lille", "Ligue 1", "CentralMidfielder", 25000000,
+                74, 76, 82, 84, 84, 68, 82, 78, 60, 58, 76, 78);
+        savePlayer("Jonathan David", 26, "Lille", "Ligue 1", "Striker", 45000000,
+                82, 84, 74, 76, 80, 86, 80, 82, 76, 50, 84, 82);
+        savePlayer("Maghnes Akliouche", 24, "Monaco", "Ligue 1", "AttackingMidfielder", 30000000,
+                80, 82, 80, 82, 84, 76, 84, 78, 62, 50, 78, 76);
+        savePlayer("Amir Murillo", 30, "Marseille", "Ligue 1", "RightBack", 10000000,
+                78, 80, 70, 68, 72, 52, 72, 82, 76, 76, 78, 82);
+        savePlayer("Marcel Sabitzer", 32, "Borussia Dortmund", "Bundesliga", "CentralMidfielder", 12000000,
+                72, 74, 80, 79, 80, 74, 76, 82, 72, 70, 78, 82);
+        savePlayer("Chris Fuhrich", 28, "Stuttgart", "Bundesliga", "LeftWinger", 18000000,
+                80, 82, 76, 78, 82, 76, 84, 78, 64, 48, 78, 76);
+        savePlayer("Serhou Guirassy", 30, "Borussia Dortmund", "Bundesliga", "Striker", 35000000,
+                76, 78, 70, 72, 78, 86, 76, 78, 84, 46, 85, 76);
+        savePlayer("Orkun Kokcu", 25, "Benfica", "Primeira Liga", "CentralMidfielder", 28000000,
+                72, 74, 83, 84, 82, 72, 78, 80, 68, 62, 78, 80);
+        savePlayer("Alan Varela", 25, "Porto", "Primeira Liga", "DefensiveMidfielder", 22000000,
+                68, 70, 78, 76, 78, 58, 70, 84, 76, 82, 80, 84);
+        savePlayer("Pedro Goncalves", 28, "Sporting CP", "Primeira Liga", "AttackingMidfielder", 32000000,
+                78, 80, 82, 82, 84, 84, 82, 80, 66, 54, 80, 78);
+        savePlayer("Kenneth Taylor", 24, "Ajax", "Eredivisie", "CentralMidfielder", 16000000,
+                70, 72, 78, 78, 80, 68, 76, 78, 66, 60, 76, 78);
+        savePlayer("Johan Bakayoko", 23, "PSV", "Eredivisie", "RightWinger", 30000000,
+                86, 88, 76, 76, 82, 78, 86, 78, 66, 44, 78, 76);
+        savePlayer("Luuk de Jong", 35, "PSV", "Eredivisie", "Striker", 6000000,
+                54, 52, 68, 70, 72, 82, 66, 74, 86, 42, 84, 78);
     }
 
     private void seedOntologyKnowledge() {
-        String[] leagues = {"Premier League", "La Liga", "Bundesliga", "Serie A", "Ligue 1"};
+        String[] leagues = {"Premier League", "La Liga", "Bundesliga", "Serie A", "Ligue 1", "Primeira Liga", "Eredivisie"};
         for (String league : leagues) {
             saveConcept(league, "League", "Football domestic league.");
         }

@@ -29,6 +29,10 @@ public class ScoringWeightProvider {
         return readWeight("hasAgePenaltyPerYear");
     }
 
+    public double getMinimumBudgetMatchForRecommendation() {
+        return readWeight("hasMinimumBudgetMatchForRecommendation");
+    }
+
     private double readWeight(String propertyName) {
         return ontologyQueryService.findNumericDataProperty(DEFAULT_PROFILE, propertyName)
                 .orElseThrow(() -> new IllegalStateException(
