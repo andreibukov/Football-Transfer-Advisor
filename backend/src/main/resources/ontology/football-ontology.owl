@@ -124,6 +124,15 @@
         <Class IRI="#Recommendation"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#HighPressingForwardCandidate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PossessionMidfielderCandidate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SweeperKeeperCandidate"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#ScoringProfile"/>
     </Declaration>
     <Declaration>
@@ -166,31 +175,61 @@
         <ObjectProperty IRI="#belongsToClub"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#hasPlayer"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#hasAttribute"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#attributeOfPlayer"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#hasRole"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#roleForPosition"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#needsPosition"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#neededByClub"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#playsInLeague"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#hasClub"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#playsPosition"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#positionOfPlayer"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#prefersPlayingStyle"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#preferredByClub"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#recommendsPlayer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#recommendedBy"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#requiresAttribute"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#attributeRequiredBy"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#attributeRequiredByStyle"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="#hasAgeMatchWeight"/>
@@ -538,6 +577,83 @@
         <Class IRI="#WorkRate"/>
         <Class IRI="#MentalAttributes"/>
     </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Goalkeeper"/>
+        <Class IRI="#Defender"/>
+        <Class IRI="#Midfielder"/>
+        <Class IRI="#Forward"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#FootballClub"/>
+        <Class IRI="#League"/>
+        <Class IRI="#Player"/>
+        <Class IRI="#PlayerAttribute"/>
+        <Class IRI="#PlayerRole"/>
+        <Class IRI="#PlayingStyle"/>
+        <Class IRI="#Position"/>
+        <Class IRI="#Recommendation"/>
+        <Class IRI="#TransferNeed"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#TechnicalAttributes"/>
+        <Class IRI="#PhysicalAttributes"/>
+        <Class IRI="#MentalAttributes"/>
+        <Class IRI="#DefensiveAttributes"/>
+    </DisjointClasses>
+    <EquivalentClasses>
+        <Class IRI="#HighPressingForwardCandidate"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Player"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#playsPosition"/>
+                <Class IRI="#Forward"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttribute"/>
+                <Class IRI="#WorkRate"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttribute"/>
+                <Class IRI="#Stamina"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#PossessionMidfielderCandidate"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Player"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#playsPosition"/>
+                <Class IRI="#Midfielder"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttribute"/>
+                <Class IRI="#Passing"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttribute"/>
+                <Class IRI="#Vision"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#SweeperKeeperCandidate"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Player"/>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#playsPosition"/>
+                <Class IRI="#Goalkeeper"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttribute"/>
+                <Class IRI="#Passing"/>
+            </ObjectSomeValuesFrom>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty IRI="#hasAttribute"/>
+                <Class IRI="#Vision"/>
+            </ObjectSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
         <NamedIndividual IRI="#Acceleration"/>
@@ -1292,6 +1408,79 @@
         <NamedIndividual IRI="#DefaultScoringProfile"/>
         <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">0.30</Literal>
     </DataPropertyAssertion>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#belongsToClub"/>
+        <ObjectProperty IRI="#hasPlayer"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasAttribute"/>
+        <ObjectProperty IRI="#attributeOfPlayer"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasRole"/>
+        <ObjectProperty IRI="#roleForPosition"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#needsPosition"/>
+        <ObjectProperty IRI="#neededByClub"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#playsInLeague"/>
+        <ObjectProperty IRI="#hasClub"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#playsPosition"/>
+        <ObjectProperty IRI="#positionOfPlayer"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#prefersPlayingStyle"/>
+        <ObjectProperty IRI="#preferredByClub"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#recommendsPlayer"/>
+        <ObjectProperty IRI="#recommendedBy"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#requiresAttribute"/>
+        <ObjectProperty IRI="#attributeRequiredBy"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#styleRequiresAttribute"/>
+        <ObjectProperty IRI="#attributeRequiredByStyle"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#belongsToClub"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#playsInLeague"/>
+    </FunctionalObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#belongsToClub"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#playsInLeague"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#playsPosition"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#recommendsPlayer"/>
+    </AsymmetricObjectProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasAgeMatchWeight"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasAgePenaltyPerYear"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasBudgetMatchWeight"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasPositionMatchWeight"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="#hasStyleMatchWeight"/>
+    </FunctionalDataProperty>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#belongsToClub"/>
         <Class IRI="#Player"/>
@@ -1310,7 +1499,7 @@
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#playsInLeague"/>
-        <Class IRI="#Player"/>
+        <Class IRI="#FootballClub"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#playsPosition"/>
@@ -1334,6 +1523,46 @@
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <Class IRI="#PlayingStyle"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasPlayer"/>
+        <Class IRI="#FootballClub"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#attributeOfPlayer"/>
+        <Class IRI="#PlayerAttribute"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#roleForPosition"/>
+        <Class IRI="#PlayerRole"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#neededByClub"/>
+        <Class IRI="#Position"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasClub"/>
+        <Class IRI="#League"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#positionOfPlayer"/>
+        <Class IRI="#Position"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#preferredByClub"/>
+        <Class IRI="#PlayingStyle"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#recommendedBy"/>
+        <Class IRI="#Player"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#attributeRequiredBy"/>
+        <Class IRI="#PlayerAttribute"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#attributeRequiredByStyle"/>
+        <Class IRI="#PlayerAttribute"/>
     </ObjectPropertyDomain>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#belongsToClub"/>
@@ -1375,6 +1604,239 @@
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <Class IRI="#PlayerAttribute"/>
     </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasPlayer"/>
+        <Class IRI="#Player"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#attributeOfPlayer"/>
+        <Class IRI="#Player"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#roleForPosition"/>
+        <Class IRI="#Position"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#neededByClub"/>
+        <Class IRI="#FootballClub"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasClub"/>
+        <Class IRI="#FootballClub"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#positionOfPlayer"/>
+        <Class IRI="#Player"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#preferredByClub"/>
+        <Class IRI="#FootballClub"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#recommendedBy"/>
+        <Class IRI="#Recommendation"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#attributeRequiredBy"/>
+        <ObjectUnionOf>
+            <Class IRI="#Position"/>
+            <Class IRI="#PlayerRole"/>
+        </ObjectUnionOf>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#attributeRequiredByStyle"/>
+        <Class IRI="#PlayingStyle"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasAgeMatchWeight"/>
+        <Class IRI="#ScoringProfile"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasAgePenaltyPerYear"/>
+        <Class IRI="#ScoringProfile"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasBudgetMatchWeight"/>
+        <Class IRI="#ScoringProfile"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasPositionMatchWeight"/>
+        <Class IRI="#ScoringProfile"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasStyleMatchWeight"/>
+        <Class IRI="#ScoringProfile"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasAgeMatchWeight"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasAgePenaltyPerYear"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasBudgetMatchWeight"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasPositionMatchWeight"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasStyleMatchWeight"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Player</IRI>
+        <Literal>Player</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Player</IRI>
+        <Literal>A football player who can be evaluated as a transfer candidate.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#FootballClub</IRI>
+        <Literal>Football club</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#FootballClub</IRI>
+        <Literal>A club that can search for transfer targets and participate in a league.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Position</IRI>
+        <Literal>Position</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Position</IRI>
+        <Literal>A tactical area or role family on the football pitch.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PlayerRole</IRI>
+        <Literal>Player role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#PlayerRole</IRI>
+        <Literal>A more specific tactical role suitable for one or more positions.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PlayingStyle</IRI>
+        <Literal>Playing style</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#PlayingStyle</IRI>
+        <Literal>A team tactical style that requires certain player attributes.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PlayerAttribute</IRI>
+        <Literal>Player attribute</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#PlayerAttribute</IRI>
+        <Literal>A technical, physical, mental, or defensive characteristic used for recommendation scoring.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#ScoringProfile</IRI>
+        <Literal>Scoring profile</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ScoringProfile</IRI>
+        <Literal>Configuration individual that stores recommendation weights and penalties.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#HighPressingForwardCandidate</IRI>
+        <Literal>High pressing forward candidate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#HighPressingForwardCandidate</IRI>
+        <Literal>Defined class for players inferred as forward candidates with work rate and stamina attributes.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#PossessionMidfielderCandidate</IRI>
+        <Literal>Possession midfielder candidate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#PossessionMidfielderCandidate</IRI>
+        <Literal>Defined class for midfielders with passing and vision attributes suitable for possession football.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#SweeperKeeperCandidate</IRI>
+        <Literal>Sweeper keeper candidate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SweeperKeeperCandidate</IRI>
+        <Literal>Defined class for goalkeepers with passing and vision attributes.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#belongsToClub</IRI>
+        <Literal>belongs to club</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#belongsToClub</IRI>
+        <Literal>Links a player to the club they currently belong to. Inverse property: hasPlayer.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#playsInLeague</IRI>
+        <Literal>plays in league</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#playsInLeague</IRI>
+        <Literal>Links a football club to the league in which it competes. Inverse property: hasClub.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#hasRole</IRI>
+        <Literal>has role</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasRole</IRI>
+        <Literal>Links a position to a tactical player role that is suitable for it.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#requiresAttribute</IRI>
+        <Literal>requires attribute</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#requiresAttribute</IRI>
+        <Literal>Links a position or player role to the attributes required for good tactical fit.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#styleRequiresAttribute</IRI>
+        <Literal>style requires attribute</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#styleRequiresAttribute</IRI>
+        <Literal>Links a playing style to the player attributes that support it.</Literal>
+    </AnnotationAssertion>
 </Ontology>
 
 

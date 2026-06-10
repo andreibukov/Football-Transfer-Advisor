@@ -10,6 +10,13 @@ import com.footballadvisor.ontology.OntologyQueryService;
 import com.footballadvisor.repository.OntologyConceptRepository;
 import com.footballadvisor.repository.OntologyRelationRepository;
 import org.junit.jupiter.api.Test;
+import org.semanticweb.owlapi.model.AxiomType;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
+import org.semanticweb.owlapi.model.OWLOntology;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,6 +26,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class OntologyDrivenRecommendationCalculatorsTest {
+
+    private static final String BASE_IRI = "http://www.footballadvisor.com/ontology/football#";
 
     private final OntologyQueryService ontologyQueryService = new OntologyQueryService(new OntologyLoader());
     private final PositionMatchCalculator positionMatchCalculator = new PositionMatchCalculator(ontologyQueryService);
@@ -100,6 +109,45 @@ class OntologyDrivenRecommendationCalculatorsTest {
         assertThat(weights.budgetMatchWeight()).isEqualTo(0.15);
         assertThat(weights.ageMatchWeight()).isEqualTo(0.15);
         assertThat(scoringWeightProvider.getAgePenaltyPerYear()).isEqualTo(10);
+    }
+
+    @Test
+    void ontologyContainsReasoningAxiomsAndPropertySemantics() {
+        OWLOntology ontology = new OntologyLoader().loadOntology();
+        OWLDataFactory dataFactory = ontology.getOWLOntologyManager().getOWLDataFactory();
+
+        OWLClass goalkeeper = dataFactory.getOWLClass(IRI.create(BASE_IRI + "Goalkeeper"));
+        OWLClass defender = dataFactory.getOWLClass(IRI.create(BASE_IRI + "Defender"));
+        OWLClass midfielder = dataFactory.getOWLClass(IRI.create(BASE_IRI + "Midfielder"));
+        OWLClass forward = dataFactory.getOWLClass(IRI.create(BASE_IRI + "Forward"));
+        OWLClass highPressingForwardCandidate = dataFactory.getOWLClass(
+                IRI.create(BASE_IRI + "HighPressingForwardCandidate")
+        );
+
+        OWLObjectProperty belongsToClub = dataFactory.getOWLObjectProperty(IRI.create(BASE_IRI + "belongsToClub"));
+        OWLObjectProperty hasPlayer = dataFactory.getOWLObjectProperty(IRI.create(BASE_IRI + "hasPlayer"));
+        OWLDataProperty hasAgeMatchWeight = dataFactory.getOWLDataProperty(IRI.create(BASE_IRI + "hasAgeMatchWeight"));
+
+        assertThat(ontology.getAxioms(AxiomType.DISJOINT_CLASSES))
+                .anySatisfy(axiom -> assertThat(axiom.getClassesInSignature())
+                        .contains(goalkeeper, defender, midfielder, forward));
+
+        assertThat(ontology.getAxioms(AxiomType.EQUIVALENT_CLASSES))
+                .anySatisfy(axiom -> assertThat(axiom.getClassesInSignature())
+                        .contains(highPressingForwardCandidate, forward));
+
+        assertThat(ontology.getAxioms(AxiomType.INVERSE_OBJECT_PROPERTIES))
+                .anySatisfy(axiom -> assertThat(axiom.getObjectPropertiesInSignature())
+                        .contains(belongsToClub, hasPlayer));
+
+        assertThat(ontology.getAxioms(AxiomType.FUNCTIONAL_OBJECT_PROPERTY))
+                .anySatisfy(axiom -> assertThat(axiom.getObjectPropertiesInSignature()).contains(belongsToClub));
+
+        assertThat(ontology.getAxioms(AxiomType.DATA_PROPERTY_DOMAIN))
+                .anySatisfy(axiom -> assertThat(axiom.getDataPropertiesInSignature()).contains(hasAgeMatchWeight));
+
+        assertThat(ontology.getAxioms(AxiomType.DATA_PROPERTY_RANGE))
+                .anySatisfy(axiom -> assertThat(axiom.getDataPropertiesInSignature()).contains(hasAgeMatchWeight));
     }
 
     @Test
