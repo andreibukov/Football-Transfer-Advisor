@@ -13,6 +13,19 @@ import { startAgentTransferAnalysis } from "../services/agentService";
 
 const ages = Array.from({ length: 18 }, (_, index) => index + 18);
 
+const corePositionOrder = [
+    "Goalkeeper",
+    "CenterBack",
+    "LeftBack",
+    "RightBack",
+    "DefensiveMidfielder",
+    "CentralMidfielder",
+    "AttackingMidfielder",
+    "LeftWinger",
+    "RightWinger",
+    "Striker",
+];
+
 const formatOntologyName = (value: string) =>
     value.replace(/([a-z])([A-Z])/g, "$1 $2");
 
@@ -30,6 +43,41 @@ type RecommendationDetails = Recommendation & {
 type Feedback = {
     type: "success" | "error" | "warning";
     message: string;
+};
+
+const uniqueOptions = (values: string[]) =>
+    Array.from(new Set(values.filter(Boolean)));
+
+const sortPositionOptions = (values: string[]) =>
+    [...values].sort((firstPosition, secondPosition) => {
+        const firstIndex = corePositionOrder.indexOf(firstPosition);
+        const secondIndex = corePositionOrder.indexOf(secondPosition);
+
+        if (firstIndex === -1 && secondIndex === -1) {
+            return firstPosition.localeCompare(secondPosition);
+        }
+
+        if (firstIndex === -1) {
+            return 1;
+        }
+
+        if (secondIndex === -1) {
+            return -1;
+        }
+
+        return firstIndex - secondIndex;
+    });
+
+const resolveClubStyle = (
+    preferredStyle: string | undefined,
+    availableStyles: string[],
+    fallbackStyle: string
+) => {
+    if (preferredStyle && availableStyles.includes(preferredStyle)) {
+        return preferredStyle;
+    }
+
+    return fallbackStyle;
 };
 
 export default function PlayerRecommendationPage() {
@@ -61,9 +109,20 @@ export default function PlayerRecommendationPage() {
                         getOntologyIndividualsByClass("PlayingStyle"),
                     ]);
 
+                const positionOptions = sortPositionOptions(
+                    uniqueOptions([...corePositionOrder, ...positionData])
+                );
+                const playingStyleOptions = uniqueOptions(playingStyleData);
+                const initialClub = clubsData[0];
+                const initialPlayingStyle = resolveClubStyle(
+                    initialClub?.preferredStyle,
+                    playingStyleOptions,
+                    playingStyleOptions[0] ?? "Possession"
+                );
+
                 setClubs(clubsData);
-                setPositions(positionData);
-                setPlayingStyles(playingStyleData);
+                setPositions(positionOptions);
+                setPlayingStyles(playingStyleOptions);
 
                 if (clubsData.length > 0 && clubsData[0].id) {
                     setSelectedLeague(clubsData[0].league);
@@ -73,9 +132,8 @@ export default function PlayerRecommendationPage() {
                 setFormData((currentFormData) => ({
                     ...currentFormData,
                     neededPosition:
-                        positionData[0] ?? currentFormData.neededPosition,
-                    playingStyle:
-                        playingStyleData[0] ?? currentFormData.playingStyle,
+                        positionOptions[0] ?? currentFormData.neededPosition,
+                    playingStyle: initialPlayingStyle,
                 }));
             } catch {
                 setFeedback({
@@ -128,6 +186,21 @@ export default function PlayerRecommendationPage() {
     const selectedClub = filteredClubs.find(
         (club) => club.id === selectedClubId
     );
+
+    useEffect(() => {
+        if (!selectedClub?.preferredStyle || playingStyles.length === 0) {
+            return;
+        }
+
+        setFormData((currentFormData) => ({
+            ...currentFormData,
+            playingStyle: resolveClubStyle(
+                selectedClub.preferredStyle,
+                playingStyles,
+                currentFormData.playingStyle
+            ),
+        }));
+    }, [selectedClub?.id, selectedClub?.preferredStyle, playingStyles]);
 
     const handleLeagueChange = (league: string) => {
         setSelectedLeague(league);
@@ -302,6 +375,11 @@ export default function PlayerRecommendationPage() {
                                         </option>
                                     ))}
                                 </select>
+                                <span className="field-hint">
+                                    Defaults to the club preferred style. Change
+                                    it only if this specific transfer need has a
+                                    different tactical requirement.
+                                </span>
                             </label>
 
                             <label>
@@ -382,6 +460,16 @@ export default function PlayerRecommendationPage() {
                             <span>Position</span>
                             <strong>
                                 {formatOntologyName(formData.neededPosition)}
+                            </strong>
+                        </li>
+                        <li>
+                            <span>Club preferred style</span>
+                            <strong>
+                                {selectedClub?.preferredStyle
+                                    ? formatOntologyName(
+                                          selectedClub.preferredStyle
+                                      )
+                                    : "N/A"}
                             </strong>
                         </li>
                         <li>

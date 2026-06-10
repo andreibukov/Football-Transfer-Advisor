@@ -34,6 +34,7 @@ public class SeedDataInitializer implements CommandLineRunner {
 
     private void seedClubs() {
         saveClub("Manchester City", "Premier League", 180000000, "Possession");
+        saveClub("Manchester United", "Premier League", 90000000, "VerticalTransitions");
         saveClub("Arsenal", "Premier League", 150000000, "HighPressing");
         saveClub("Liverpool", "Premier League", 130000000, "CounterAttacking");
         saveClub("Aston Villa", "Premier League", 85000000, "VerticalTransitions");
@@ -57,7 +58,9 @@ public class SeedDataInitializer implements CommandLineRunner {
         saveClub("Brighton", "Premier League", 55000000, "BalancedBuildUp");
         saveClub("Bournemouth", "Premier League", 40000000, "VerticalTransitions");
         saveClub("Brentford", "Premier League", 35000000, "LowBlockCounter");
+        saveClub("Everton", "Premier League", 30000000, "LowBlockCounter");
         saveClub("Fulham", "Premier League", 30000000, "BalancedBuildUp");
+        saveClub("Leicester City", "Premier League", 25000000, "VerticalTransitions");
         saveClub("West Ham", "Premier League", 45000000, "CounterAttacking");
         saveClub("Villarreal", "La Liga", 35000000, "VerticalTransitions");
         saveClub("Valencia", "La Liga", 25000000, "LowBlockCounter");
@@ -112,18 +115,38 @@ public class SeedDataInitializer implements CommandLineRunner {
                 93, 92, 82, 80, 84, 76, 86, 89, 76, 78, 83, 86);
         savePlayer("Theo Hernandez", 28, "AC Milan", "Serie A", "LeftBack", 60000000,
                 92, 90, 80, 78, 83, 78, 85, 86, 81, 75, 84, 83);
+        savePlayer("Diogo Costa", 26, "Porto", "Primeira Liga", "Goalkeeper", 35000000,
+                58, 60, 78, 76, 74, 30, 45, 72, 76, 40, 84, 70);
+        savePlayer("Unai Simon", 29, "Athletic Club", "La Liga", "Goalkeeper", 30000000,
+                54, 56, 72, 74, 70, 28, 42, 70, 78, 38, 86, 68);
+        savePlayer("Bernd Leno", 34, "Fulham", "Premier League", "Goalkeeper", 8000000,
+                48, 46, 70, 72, 68, 25, 38, 66, 74, 35, 84, 66);
+        savePlayer("Lucas Chevalier", 24, "Lille", "Ligue 1", "Goalkeeper", 40000000,
+                56, 58, 76, 78, 72, 28, 42, 70, 75, 38, 85, 70);
         savePlayer("Lewis Dunk", 34, "Brighton", "Premier League", "CenterBack", 10000000,
                 55, 52, 74, 72, 70, 42, 50, 78, 84, 83, 82, 76);
         savePlayer("Joachim Andersen", 30, "Fulham", "Premier League", "CenterBack", 18000000,
                 62, 60, 76, 74, 73, 40, 55, 79, 83, 84, 82, 78);
+        savePlayer("Odilon Kossounou", 25, "Atalanta", "Serie A", "CenterBack", 28000000,
+                76, 74, 74, 72, 76, 42, 68, 82, 84, 82, 82, 80);
+        savePlayer("Jarrad Branthwaite", 24, "Everton", "Premier League", "CenterBack", 35000000,
+                70, 68, 70, 68, 72, 40, 60, 80, 86, 84, 82, 78);
         savePlayer("Milos Kerkez", 22, "Bournemouth", "Premier League", "LeftBack", 28000000,
                 84, 86, 72, 70, 76, 55, 78, 84, 70, 72, 76, 82);
         savePlayer("Aaron Wan-Bissaka", 28, "West Ham", "Premier League", "RightBack", 18000000,
                 80, 82, 70, 66, 72, 48, 74, 82, 73, 86, 80, 82);
+        savePlayer("Noussair Mazraoui", 28, "Manchester United", "Premier League", "RightBack", 28000000,
+                80, 82, 78, 76, 80, 60, 80, 82, 72, 76, 78, 80);
+        savePlayer("Miguel Gutierrez", 24, "Girona", "La Liga", "LeftBack", 25000000,
+                82, 84, 78, 80, 80, 60, 82, 82, 68, 70, 78, 80);
         savePlayer("Vitaly Janelt", 28, "Brentford", "Premier League", "DefensiveMidfielder", 12000000,
                 68, 70, 76, 73, 75, 54, 68, 83, 78, 80, 79, 84);
+        savePlayer("Morten Hjulmand", 27, "Sporting CP", "Primeira Liga", "DefensiveMidfielder", 30000000,
+                70, 72, 78, 76, 78, 58, 72, 86, 80, 84, 82, 86);
         savePlayer("Andreas Pereira", 30, "Fulham", "Premier League", "AttackingMidfielder", 18000000,
                 74, 76, 80, 79, 82, 72, 78, 77, 66, 56, 74, 76);
+        savePlayer("Bilal El Khannouss", 22, "Leicester City", "Premier League", "AttackingMidfielder", 22000000,
+                76, 78, 80, 82, 84, 70, 82, 76, 62, 50, 75, 76);
         savePlayer("Jarrod Bowen", 29, "West Ham", "Premier League", "RightWinger", 42000000,
                 82, 84, 76, 75, 81, 83, 80, 84, 73, 58, 82, 86);
         savePlayer("Bryan Mbeumo", 26, "Brentford", "Premier League", "RightWinger", 35000000,
@@ -160,6 +183,8 @@ public class SeedDataInitializer implements CommandLineRunner {
                 72, 74, 80, 79, 80, 74, 76, 82, 72, 70, 78, 82);
         savePlayer("Chris Fuhrich", 28, "Stuttgart", "Bundesliga", "LeftWinger", 18000000,
                 80, 82, 76, 78, 82, 76, 84, 78, 64, 48, 78, 76);
+        savePlayer("Crysencio Summerville", 24, "West Ham", "Premier League", "LeftWinger", 22000000,
+                84, 86, 74, 76, 82, 76, 86, 78, 62, 44, 76, 74);
         savePlayer("Serhou Guirassy", 30, "Borussia Dortmund", "Bundesliga", "Striker", 35000000,
                 76, 78, 70, 72, 78, 86, 76, 78, 84, 46, 85, 76);
         savePlayer("Orkun Kokcu", 25, "Benfica", "Primeira Liga", "CentralMidfielder", 28000000,
@@ -229,7 +254,7 @@ public class SeedDataInitializer implements CommandLineRunner {
         saveRelation("LeftWinger", "hasRole", "InsideForward");
         saveRelation("Striker", "hasRole", "TargetForward");
         saveRelation("Striker", "hasRole", "PressingForward");
-        saveRelation("CentreBack", "hasRole", "BallPlayingDefender");
+        saveRelation("CenterBack", "hasRole", "BallPlayingDefender");
         saveRelation("RightBack", "hasRole", "AttackingFullBack");
         saveRelation("LeftBack", "hasRole", "AttackingFullBack");
 

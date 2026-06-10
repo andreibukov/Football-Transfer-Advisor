@@ -103,6 +103,13 @@ label {
     font-weight: 700;
 }
 
+.field-hint {
+    color: #66768a;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
 h1,
 h2,
 h3,
