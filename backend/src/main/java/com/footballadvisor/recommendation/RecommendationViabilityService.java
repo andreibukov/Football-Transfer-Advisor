@@ -10,7 +10,13 @@ public class RecommendationViabilityService {
     private final ScoringWeightProvider scoringWeightProvider;
 
     public boolean isViable(RecommendationScore score) {
-        return isFinanciallyViable(score) && isAgeProfileViable(score);
+        return isPositionallyViable(score)
+                && isFinanciallyViable(score)
+                && isAgeProfileViable(score);
+    }
+
+    private boolean isPositionallyViable(RecommendationScore score) {
+        return score.getPositionMatch() >= scoringWeightProvider.getMinimumPositionMatchForRecommendation();
     }
 
     private boolean isFinanciallyViable(RecommendationScore score) {

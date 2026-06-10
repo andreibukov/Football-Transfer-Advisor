@@ -37,6 +37,10 @@ public class ScoringWeightProvider {
         return readWeight("hasMinimumAgeMatchForRecommendation");
     }
 
+    public double getMinimumPositionMatchForRecommendation() {
+        return readWeight("hasMinimumPositionMatchForRecommendation");
+    }
+
     private double readWeight(String propertyName) {
         return ontologyQueryService.findNumericDataProperty(DEFAULT_PROFILE, propertyName)
                 .orElseThrow(() -> new IllegalStateException(

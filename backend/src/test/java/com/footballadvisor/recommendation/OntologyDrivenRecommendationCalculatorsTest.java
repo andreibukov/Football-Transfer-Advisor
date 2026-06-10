@@ -47,6 +47,9 @@ class OntologyDrivenRecommendationCalculatorsTest {
         double score = positionMatchCalculator.calculate("Striker", "LeftWinger");
 
         assertThat(score).isEqualTo(60);
+        assertThat(positionMatchCalculator.calculate("LeftBack", "RightBack")).isEqualTo(60);
+        assertThat(positionMatchCalculator.calculate("LeftBack", "CenterBack")).isEqualTo(60);
+        assertThat(positionMatchCalculator.calculate("Goalkeeper", "CentralMidfielder")).isEqualTo(0);
     }
 
     @Test
@@ -113,6 +116,7 @@ class OntologyDrivenRecommendationCalculatorsTest {
         assertThat(scoringWeightProvider.getAgePenaltyPerYear()).isEqualTo(10);
         assertThat(scoringWeightProvider.getMinimumBudgetMatchForRecommendation()).isEqualTo(25);
         assertThat(scoringWeightProvider.getMinimumAgeMatchForRecommendation()).isEqualTo(25);
+        assertThat(scoringWeightProvider.getMinimumPositionMatchForRecommendation()).isEqualTo(50);
     }
 
     @Test
@@ -167,21 +171,31 @@ class OntologyDrivenRecommendationCalculatorsTest {
     @Test
     void filtersUnrealisticRecommendationsUsingOntologyThresholds() {
         assertThat(recommendationViabilityService.isViable(RecommendationScore.builder()
+                .positionMatch(0)
+                .budgetMatch(100)
+                .ageMatch(100)
+                .build())).isFalse();
+
+        assertThat(recommendationViabilityService.isViable(RecommendationScore.builder()
+                .positionMatch(60)
                 .budgetMatch(0)
                 .ageMatch(100)
                 .build())).isFalse();
 
         assertThat(recommendationViabilityService.isViable(RecommendationScore.builder()
+                .positionMatch(60)
                 .budgetMatch(100)
                 .ageMatch(0)
                 .build())).isFalse();
 
         assertThat(recommendationViabilityService.isViable(RecommendationScore.builder()
+                .positionMatch(60)
                 .budgetMatch(20)
                 .ageMatch(100)
                 .build())).isFalse();
 
         assertThat(recommendationViabilityService.isViable(RecommendationScore.builder()
+                .positionMatch(60)
                 .budgetMatch(25)
                 .ageMatch(25)
                 .build())).isTrue();

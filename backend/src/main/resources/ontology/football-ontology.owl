@@ -247,6 +247,9 @@
         <DataProperty IRI="#hasMinimumAgeMatchForRecommendation"/>
     </Declaration>
     <Declaration>
+        <DataProperty IRI="#hasMinimumPositionMatchForRecommendation"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="#hasPositionMatchWeight"/>
     </Declaration>
     <Declaration>
@@ -1415,6 +1418,11 @@
         <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">25</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="#hasMinimumPositionMatchForRecommendation"/>
+        <NamedIndividual IRI="#DefaultScoringProfile"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">50</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="#hasPositionMatchWeight"/>
         <NamedIndividual IRI="#DefaultScoringProfile"/>
         <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">0.40</Literal>
@@ -1498,6 +1506,9 @@
         <DataProperty IRI="#hasMinimumAgeMatchForRecommendation"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
+        <DataProperty IRI="#hasMinimumPositionMatchForRecommendation"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
         <DataProperty IRI="#hasPositionMatchWeight"/>
     </FunctionalDataProperty>
     <FunctionalDataProperty>
@@ -1690,6 +1701,10 @@
         <Class IRI="#ScoringProfile"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
+        <DataProperty IRI="#hasMinimumPositionMatchForRecommendation"/>
+        <Class IRI="#ScoringProfile"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
         <DataProperty IRI="#hasPositionMatchWeight"/>
         <Class IRI="#ScoringProfile"/>
     </DataPropertyDomain>
@@ -1715,6 +1730,10 @@
     </DataPropertyRange>
     <DataPropertyRange>
         <DataProperty IRI="#hasMinimumAgeMatchForRecommendation"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasMinimumPositionMatchForRecommendation"/>
         <Datatype abbreviatedIRI="xsd:decimal"/>
     </DataPropertyRange>
     <DataPropertyRange>
@@ -1814,6 +1833,16 @@
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
         <IRI>#hasMinimumAgeMatchForRecommendation</IRI>
         <Literal>Minimum age profile score required for a player to be returned as a realistic recommendation.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#hasMinimumPositionMatchForRecommendation</IRI>
+        <Literal>minimum position match for recommendation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#hasMinimumPositionMatchForRecommendation</IRI>
+        <Literal>Minimum positional relevance score required for a player to be returned as a realistic recommendation.</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
