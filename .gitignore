@@ -40,3 +40,7 @@ Thumbs.db
 
 # Generated archives
 *.zip
+
+# JADE runtime metadata
+backend/APDescription.txt
+backend/MTPs-Main-Container.txt

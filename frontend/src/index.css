@@ -67,6 +67,7 @@ input,
 select,
 textarea {
     width: 100%;
+    min-width: 0;
     border: 1px solid #cfd8e3;
     border-radius: 8px;
     padding: 11px 12px;
@@ -85,6 +86,10 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(15, 107, 95, 0.14);
 }
 
+select {
+    height: 44px;
+}
+
 input[readonly] {
     background: #f4f7fb;
     color: #66768a;
@@ -97,6 +102,7 @@ textarea {
 
 label {
     display: grid;
+    min-width: 0;
     gap: 7px;
     color: #39485c;
     font-size: 14px;
