@@ -4,9 +4,9 @@ import com.footballadvisor.dto.RecommendationResponse;
 import com.footballadvisor.entity.*;
 import com.footballadvisor.ontology.OntologyQueryService;
 import com.footballadvisor.recommendation.CandidateEligibilityService;
-import com.footballadvisor.recommendation.FinancialViabilityService;
 import com.footballadvisor.recommendation.RecommendationEngine;
 import com.footballadvisor.recommendation.RecommendationScore;
+import com.footballadvisor.recommendation.RecommendationViabilityService;
 import com.footballadvisor.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class RecommendationService {
     private final RecommendationReasonRepository recommendationReasonRepository;
     private final RecommendationEngine recommendationEngine;
     private final CandidateEligibilityService candidateEligibilityService;
-    private final FinancialViabilityService financialViabilityService;
+    private final RecommendationViabilityService recommendationViabilityService;
     private final OntologyQueryService ontologyQueryService;
 
     public List<RecommendationResponse> generateRecommendations(Long transferNeedId) {
@@ -55,7 +55,7 @@ public class RecommendationService {
                 continue;
             }
 
-            if (!financialViabilityService.isViable(score)) {
+            if (!recommendationViabilityService.isViable(score)) {
                 continue;
             }
 
