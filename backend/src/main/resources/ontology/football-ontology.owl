@@ -256,13 +256,13 @@
         <DataProperty IRI="#hasStyleMatchWeight"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Acceleration"/>
+        <NamedIndividual IRI="#AccelerationOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#AttackingMidfielder"/>
+        <NamedIndividual IRI="#AttackingMidfielderOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#BallControl"/>
+        <NamedIndividual IRI="#BallControlOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#BallPlayingDefender"/>
@@ -289,16 +289,19 @@
         <NamedIndividual IRI="#Bundesliga"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#CenterBack"/>
+        <NamedIndividual IRI="#CenterBackOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#CounterAttack"/>
+        <NamedIndividual IRI="#CentralMidfielderOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#DefensiveBlock"/>
+        <NamedIndividual IRI="#CounterAttackOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
+        <NamedIndividual IRI="#DefensiveBlockOption"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#DefaultScoringProfile"/>
@@ -310,19 +313,19 @@
         <NamedIndividual IRI="#BoxToBoxMidfielder"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Dribbling"/>
+        <NamedIndividual IRI="#DribblingOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Finishing"/>
+        <NamedIndividual IRI="#FinishingOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#GegenpressingInstance"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Goalkeeper"/>
+        <NamedIndividual IRI="#GoalkeeperOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#HighPress"/>
+        <NamedIndividual IRI="#HighPressOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#InsideForward"/>
@@ -337,10 +340,10 @@
         <NamedIndividual IRI="#LaLiga"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#LeftBack"/>
+        <NamedIndividual IRI="#LeftBackOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#LeftWinger"/>
+        <NamedIndividual IRI="#LeftWingerOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Ligue1"/>
@@ -352,10 +355,10 @@
         <NamedIndividual IRI="#ManchesterCity"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#PressingForward"/>
@@ -364,37 +367,37 @@
         <NamedIndividual IRI="#Poacher"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Possession"/>
+        <NamedIndividual IRI="#PossessionOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#PremierLeague"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#PressResistance"/>
+        <NamedIndividual IRI="#PressResistanceOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#RealMadrid"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#RightBack"/>
+        <NamedIndividual IRI="#RightBackOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#RightWinger"/>
+        <NamedIndividual IRI="#RightWingerOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#SerieA"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Speed"/>
+        <NamedIndividual IRI="#SpeedOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Strength"/>
+        <NamedIndividual IRI="#StrengthOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Striker"/>
+        <NamedIndividual IRI="#StrikerOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#TargetForward"/>
@@ -415,16 +418,16 @@
         <NamedIndividual IRI="#WingBack"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#TikiTakaInstance"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#WorkRate"/>
+        <NamedIndividual IRI="#WorkRateOption"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#Acceleration"/>
@@ -665,15 +668,15 @@
     </EquivalentClasses>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Acceleration"/>
+        <NamedIndividual IRI="#AccelerationOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#AttackingMidfielder"/>
+        <NamedIndividual IRI="#AttackingMidfielderOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#BallControl"/>
+        <NamedIndividual IRI="#BallControlOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerRole"/>
@@ -709,15 +712,19 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#CenterBack"/>
+        <NamedIndividual IRI="#CenterBackOption"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Position"/>
+        <NamedIndividual IRI="#CentralMidfielderOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayingStyle"/>
-        <NamedIndividual IRI="#CounterAttack"/>
+        <NamedIndividual IRI="#CounterAttackOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayingStyle"/>
-        <NamedIndividual IRI="#DefensiveBlock"/>
+        <NamedIndividual IRI="#DefensiveBlockOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#ScoringProfile"/>
@@ -733,15 +740,15 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Dribbling"/>
+        <NamedIndividual IRI="#DribblingOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Finishing"/>
+        <NamedIndividual IRI="#FinishingOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Gegenpressing"/>
@@ -749,11 +756,11 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#Goalkeeper"/>
+        <NamedIndividual IRI="#GoalkeeperOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayingStyle"/>
-        <NamedIndividual IRI="#HighPress"/>
+        <NamedIndividual IRI="#HighPressOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerRole"/>
@@ -773,11 +780,11 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#LeftBack"/>
+        <NamedIndividual IRI="#LeftBackOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#LeftWinger"/>
+        <NamedIndividual IRI="#LeftWingerOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#League"/>
@@ -793,11 +800,11 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerRole"/>
@@ -809,7 +816,7 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayingStyle"/>
-        <NamedIndividual IRI="#Possession"/>
+        <NamedIndividual IRI="#PossessionOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#League"/>
@@ -821,11 +828,11 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#RightBack"/>
+        <NamedIndividual IRI="#RightBackOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#RightWinger"/>
+        <NamedIndividual IRI="#RightWingerOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#League"/>
@@ -833,19 +840,19 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Speed"/>
+        <NamedIndividual IRI="#SpeedOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Strength"/>
+        <NamedIndividual IRI="#StrengthOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Position"/>
-        <NamedIndividual IRI="#Striker"/>
+        <NamedIndividual IRI="#StrikerOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerRole"/>
@@ -873,7 +880,7 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#TikiTaka"/>
@@ -881,516 +888,516 @@
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PlayerAttribute"/>
-        <NamedIndividual IRI="#WorkRate"/>
+        <NamedIndividual IRI="#WorkRateOption"/>
     </ClassAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#CounterAttack"/>
-        <NamedIndividual IRI="#Acceleration"/>
+        <NamedIndividual IRI="#CounterAttackOption"/>
+        <NamedIndividual IRI="#AccelerationOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#CounterAttack"/>
-        <NamedIndividual IRI="#Speed"/>
+        <NamedIndividual IRI="#CounterAttackOption"/>
+        <NamedIndividual IRI="#SpeedOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#DefensiveBlock"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#DefensiveBlockOption"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#DefensiveBlock"/>
-        <NamedIndividual IRI="#Strength"/>
+        <NamedIndividual IRI="#DefensiveBlockOption"/>
+        <NamedIndividual IRI="#StrengthOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#DefensiveBlock"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#DefensiveBlockOption"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
         <NamedIndividual IRI="#DeepLyingPlaymaker"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
         <NamedIndividual IRI="#BallWinningMidfielder"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#DefensiveMidfielder"/>
+        <NamedIndividual IRI="#DefensiveMidfielderOption"/>
         <NamedIndividual IRI="#AnchorMan"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#CentralMidfielder"/>
+        <NamedIndividual IRI="#CentralMidfielderOption"/>
         <NamedIndividual IRI="#DeepLyingPlaymaker"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#CentralMidfielder"/>
+        <NamedIndividual IRI="#CentralMidfielderOption"/>
         <NamedIndividual IRI="#BoxToBoxMidfielder"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#CentralMidfielder"/>
+        <NamedIndividual IRI="#CentralMidfielderOption"/>
         <NamedIndividual IRI="#AdvancedPlaymaker"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#AttackingMidfielder"/>
+        <NamedIndividual IRI="#AttackingMidfielderOption"/>
         <NamedIndividual IRI="#AdvancedPlaymaker"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#AttackingMidfielder"/>
+        <NamedIndividual IRI="#AttackingMidfielderOption"/>
         <NamedIndividual IRI="#ShadowStriker"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#RightWinger"/>
+        <NamedIndividual IRI="#RightWingerOption"/>
         <NamedIndividual IRI="#InsideForward"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#RightWinger"/>
+        <NamedIndividual IRI="#RightWingerOption"/>
         <NamedIndividual IRI="#WidePlaymaker"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#LeftWinger"/>
+        <NamedIndividual IRI="#LeftWingerOption"/>
         <NamedIndividual IRI="#InsideForward"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#LeftWinger"/>
+        <NamedIndividual IRI="#LeftWingerOption"/>
         <NamedIndividual IRI="#WidePlaymaker"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#Striker"/>
+        <NamedIndividual IRI="#StrikerOption"/>
         <NamedIndividual IRI="#TargetForward"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#Striker"/>
+        <NamedIndividual IRI="#StrikerOption"/>
         <NamedIndividual IRI="#PressingForward"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#Striker"/>
+        <NamedIndividual IRI="#StrikerOption"/>
         <NamedIndividual IRI="#Poacher"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#Striker"/>
+        <NamedIndividual IRI="#StrikerOption"/>
         <NamedIndividual IRI="#FalseNine"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#CenterBack"/>
+        <NamedIndividual IRI="#CenterBackOption"/>
         <NamedIndividual IRI="#BallPlayingDefender"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#CenterBack"/>
+        <NamedIndividual IRI="#CenterBackOption"/>
         <NamedIndividual IRI="#Stopper"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#RightBack"/>
+        <NamedIndividual IRI="#RightBackOption"/>
         <NamedIndividual IRI="#WingBack"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#RightBack"/>
+        <NamedIndividual IRI="#RightBackOption"/>
         <NamedIndividual IRI="#InvertedFullBack"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#RightBack"/>
+        <NamedIndividual IRI="#RightBackOption"/>
         <NamedIndividual IRI="#AttackingFullBack"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#LeftBack"/>
+        <NamedIndividual IRI="#LeftBackOption"/>
         <NamedIndividual IRI="#WingBack"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#LeftBack"/>
+        <NamedIndividual IRI="#LeftBackOption"/>
         <NamedIndividual IRI="#InvertedFullBack"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#LeftBack"/>
+        <NamedIndividual IRI="#LeftBackOption"/>
         <NamedIndividual IRI="#AttackingFullBack"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#hasRole"/>
-        <NamedIndividual IRI="#Goalkeeper"/>
+        <NamedIndividual IRI="#GoalkeeperOption"/>
         <NamedIndividual IRI="#SweeperKeeper"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#DeepLyingPlaymaker"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#DeepLyingPlaymaker"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#DeepLyingPlaymaker"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AdvancedPlaymaker"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AdvancedPlaymaker"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AdvancedPlaymaker"/>
-        <NamedIndividual IRI="#BallControl"/>
+        <NamedIndividual IRI="#BallControlOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AnchorMan"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AnchorMan"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AnchorMan"/>
-        <NamedIndividual IRI="#Strength"/>
+        <NamedIndividual IRI="#StrengthOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BallWinningMidfielder"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BallWinningMidfielder"/>
-        <NamedIndividual IRI="#Strength"/>
+        <NamedIndividual IRI="#StrengthOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BallWinningMidfielder"/>
-        <NamedIndividual IRI="#WorkRate"/>
+        <NamedIndividual IRI="#WorkRateOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BoxToBoxMidfielder"/>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BoxToBoxMidfielder"/>
-        <NamedIndividual IRI="#WorkRate"/>
+        <NamedIndividual IRI="#WorkRateOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BoxToBoxMidfielder"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#InsideForward"/>
-        <NamedIndividual IRI="#Dribbling"/>
+        <NamedIndividual IRI="#DribblingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#InsideForward"/>
-        <NamedIndividual IRI="#Finishing"/>
+        <NamedIndividual IRI="#FinishingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#InsideForward"/>
-        <NamedIndividual IRI="#Acceleration"/>
+        <NamedIndividual IRI="#AccelerationOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#WidePlaymaker"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#WidePlaymaker"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#WidePlaymaker"/>
-        <NamedIndividual IRI="#Dribbling"/>
+        <NamedIndividual IRI="#DribblingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#TargetForward"/>
-        <NamedIndividual IRI="#Strength"/>
+        <NamedIndividual IRI="#StrengthOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#TargetForward"/>
-        <NamedIndividual IRI="#Finishing"/>
+        <NamedIndividual IRI="#FinishingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#TargetForward"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#Poacher"/>
-        <NamedIndividual IRI="#Finishing"/>
+        <NamedIndividual IRI="#FinishingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#Poacher"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#Poacher"/>
-        <NamedIndividual IRI="#Acceleration"/>
+        <NamedIndividual IRI="#AccelerationOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#FalseNine"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#FalseNine"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#FalseNine"/>
-        <NamedIndividual IRI="#BallControl"/>
+        <NamedIndividual IRI="#BallControlOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#PressingForward"/>
-        <NamedIndividual IRI="#WorkRate"/>
+        <NamedIndividual IRI="#WorkRateOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#PressingForward"/>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#PressingForward"/>
-        <NamedIndividual IRI="#Acceleration"/>
+        <NamedIndividual IRI="#AccelerationOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#ShadowStriker"/>
-        <NamedIndividual IRI="#Finishing"/>
+        <NamedIndividual IRI="#FinishingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#ShadowStriker"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#ShadowStriker"/>
-        <NamedIndividual IRI="#Dribbling"/>
+        <NamedIndividual IRI="#DribblingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BallPlayingDefender"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BallPlayingDefender"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#BallPlayingDefender"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#Stopper"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#Stopper"/>
-        <NamedIndividual IRI="#Strength"/>
+        <NamedIndividual IRI="#StrengthOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#Stopper"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#WingBack"/>
-        <NamedIndividual IRI="#Speed"/>
+        <NamedIndividual IRI="#SpeedOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#WingBack"/>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#WingBack"/>
-        <NamedIndividual IRI="#Dribbling"/>
+        <NamedIndividual IRI="#DribblingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#InvertedFullBack"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#InvertedFullBack"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#InvertedFullBack"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AttackingFullBack"/>
-        <NamedIndividual IRI="#Speed"/>
+        <NamedIndividual IRI="#SpeedOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AttackingFullBack"/>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#AttackingFullBack"/>
-        <NamedIndividual IRI="#Dribbling"/>
+        <NamedIndividual IRI="#DribblingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#SweeperKeeper"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#SweeperKeeper"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
         <NamedIndividual IRI="#SweeperKeeper"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <NamedIndividual IRI="#GegenpressingInstance"/>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <NamedIndividual IRI="#GegenpressingInstance"/>
-        <NamedIndividual IRI="#Tackling"/>
+        <NamedIndividual IRI="#TacklingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <NamedIndividual IRI="#GegenpressingInstance"/>
-        <NamedIndividual IRI="#WorkRate"/>
+        <NamedIndividual IRI="#WorkRateOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#HighPress"/>
-        <NamedIndividual IRI="#Stamina"/>
+        <NamedIndividual IRI="#HighPressOption"/>
+        <NamedIndividual IRI="#StaminaOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#HighPress"/>
-        <NamedIndividual IRI="#WorkRate"/>
+        <NamedIndividual IRI="#HighPressOption"/>
+        <NamedIndividual IRI="#WorkRateOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#Possession"/>
-        <NamedIndividual IRI="#BallControl"/>
+        <NamedIndividual IRI="#PossessionOption"/>
+        <NamedIndividual IRI="#BallControlOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#Possession"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PossessionOption"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
-        <NamedIndividual IRI="#Possession"/>
-        <NamedIndividual IRI="#Vision"/>
+        <NamedIndividual IRI="#PossessionOption"/>
+        <NamedIndividual IRI="#VisionOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
-        <NamedIndividual IRI="#Striker"/>
-        <NamedIndividual IRI="#Finishing"/>
+        <NamedIndividual IRI="#StrikerOption"/>
+        <NamedIndividual IRI="#FinishingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
-        <NamedIndividual IRI="#Striker"/>
-        <NamedIndividual IRI="#Positioning"/>
+        <NamedIndividual IRI="#StrikerOption"/>
+        <NamedIndividual IRI="#PositioningOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#requiresAttribute"/>
-        <NamedIndividual IRI="#Striker"/>
-        <NamedIndividual IRI="#Speed"/>
+        <NamedIndividual IRI="#StrikerOption"/>
+        <NamedIndividual IRI="#SpeedOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <NamedIndividual IRI="#TikiTakaInstance"/>
-        <NamedIndividual IRI="#BallControl"/>
+        <NamedIndividual IRI="#BallControlOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <NamedIndividual IRI="#TikiTakaInstance"/>
-        <NamedIndividual IRI="#Passing"/>
+        <NamedIndividual IRI="#PassingOption"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="#styleRequiresAttribute"/>
         <NamedIndividual IRI="#TikiTakaInstance"/>
-        <NamedIndividual IRI="#PressResistance"/>
+        <NamedIndividual IRI="#PressResistanceOption"/>
     </ObjectPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasAgeMatchWeight"/>

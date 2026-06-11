@@ -20,6 +20,8 @@ import org.semanticweb.owlapi.model.OWLOntology;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -156,6 +158,23 @@ class OntologyDrivenRecommendationCalculatorsTest {
 
         assertThat(ontology.getAxioms(AxiomType.DATA_PROPERTY_RANGE))
                 .anySatisfy(axiom -> assertThat(axiom.getDataPropertiesInSignature()).contains(hasAgeMatchWeight));
+    }
+
+    @Test
+    void ontologyDoesNotReuseTheSameIriForClassesAndIndividuals() {
+        OWLOntology ontology = new OntologyLoader().loadOntology();
+
+        Set<String> classIris = ontology.getClassesInSignature()
+                .stream()
+                .map(owlClass -> owlClass.getIRI().toString())
+                .collect(Collectors.toSet());
+
+        Set<String> individualIris = ontology.getIndividualsInSignature()
+                .stream()
+                .map(individual -> individual.getIRI().toString())
+                .collect(Collectors.toSet());
+
+        assertThat(classIris).doesNotContainAnyElementsOf(individualIris);
     }
 
     @Test

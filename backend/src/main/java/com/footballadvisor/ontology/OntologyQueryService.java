@@ -52,7 +52,9 @@ public class OntologyQueryService {
                 String currentPropertyName = getShortName(axiom.getProperty().asOWLObjectProperty().getIRI());
 
                 if (currentPropertyName.equalsIgnoreCase(propertyName)) {
-                    String targetName = getShortName(axiom.getObject().asOWLNamedIndividual().getIRI());
+                    String targetName = normalizeIndividualName(
+                            getShortName(axiom.getObject().asOWLNamedIndividual().getIRI())
+                    );
                     results.add(targetName);
                 }
             }
@@ -185,15 +187,28 @@ public class OntologyQueryService {
             return exactMatch;
         }
 
-        return ontology.getIndividualsInSignature()
+        Optional<OWLNamedIndividual> instanceMatch = ontology.getIndividualsInSignature()
                 .stream()
                 .filter(individual -> getShortName(individual.getIRI()).equalsIgnoreCase(individualName + "Instance"))
+                .findFirst();
+
+        if (instanceMatch.isPresent()) {
+            return instanceMatch;
+        }
+
+        return ontology.getIndividualsInSignature()
+                .stream()
+                .filter(individual -> getShortName(individual.getIRI()).equalsIgnoreCase(individualName + "Option"))
                 .findFirst();
     }
 
     private String normalizeIndividualName(String individualName) {
         if (individualName.endsWith("Instance")) {
             return individualName.substring(0, individualName.length() - "Instance".length());
+        }
+
+        if (individualName.endsWith("Option")) {
+            return individualName.substring(0, individualName.length() - "Option".length());
         }
 
         return individualName;
