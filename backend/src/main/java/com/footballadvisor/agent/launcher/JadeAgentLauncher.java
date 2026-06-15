@@ -24,9 +24,18 @@ public class JadeAgentLauncher {
             Runtime runtime = Runtime.instance();
 
             Profile profile = new ProfileImpl();
-            profile.setParameter(Profile.GUI, Boolean.toString(jadeGuiEnabled));
+            profile.setParameter(Profile.GUI, "false");
 
             AgentContainer container = runtime.createMainContainer(profile);
+
+            if (jadeGuiEnabled) {
+                AgentController rmaAgent = container.createNewAgent(
+                        "rma",
+                        "jade.tools.rma.rma",
+                        null
+                );
+                rmaAgent.start();
+            }
 
             AgentController clubAgent = container.createNewAgent(
                     "ClubAnalysisAgent",
