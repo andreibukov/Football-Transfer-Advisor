@@ -1,7 +1,6 @@
 package com.footballadvisor.service;
 
 import com.footballadvisor.agent.BackendSenderAgent;
-import com.footballadvisor.dto.TransferNeedRequest;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import lombok.RequiredArgsConstructor;
@@ -15,19 +14,6 @@ public class AgentOrchestrationService {
 
     public String startTransferAnalysis(Long transferNeedId) {
         String content = "TRANSFER_NEED_ID|" + transferNeedId;
-
-        return startAclFlow(content);
-    }
-
-    public String startTestFlow(TransferNeedRequest request) {
-        String content = "Analyze transfer need: "
-                + request.getNeededPosition()
-                + ", "
-                + request.getPlayingStyle()
-                + ", Budget "
-                + request.getMaxBudget()
-                + ", Max Age "
-                + request.getMaxAge();
 
         return startAclFlow(content);
     }

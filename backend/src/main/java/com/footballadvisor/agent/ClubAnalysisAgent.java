@@ -33,11 +33,9 @@ public class ClubAnalysisAgent extends Agent {
                     );
 
                     if (message.getPerformative() == ACLMessage.REQUEST) {
-                        String ontologyQueryContent = buildOntologyQueryContent(message.getContent());
-
                         ACLMessage ontologyQuery = new ACLMessage(ACLMessage.QUERY_REF);
                         ontologyQuery.addReceiver(new AID("OntologyManagerAgent", AID.ISLOCALNAME));
-                        ontologyQuery.setContent(ontologyQueryContent);
+                        ontologyQuery.setContent(message.getContent());
                         send(ontologyQuery);
                         AgentAclLogger.log(
                                 getLocalName(),
@@ -87,41 +85,5 @@ public class ClubAnalysisAgent extends Agent {
                 }
             }
         });
-    }
-
-    private String buildOntologyQueryContent(String content) {
-        if (content != null && content.startsWith("TRANSFER_NEED_ID|")) {
-            return content;
-        }
-
-        String[] parsedTransferNeed = parseTransferNeed(content);
-
-        return parsedTransferNeed[0]
-                + "|"
-                + parsedTransferNeed[1]
-                + "|"
-                + parsedTransferNeed[2]
-                + "|"
-                + parsedTransferNeed[3];
-    }
-
-    private String[] parseTransferNeed(String content) {
-        try {
-            String cleanedContent = content.replace("Analyze transfer need:", "").trim();
-
-            String[] parts = cleanedContent.split(",");
-
-            String neededPosition = parts[0].trim();
-            String playingStyle = parts[1].trim();
-            String maxBudget = parts[2].replace("Budget", "").trim();
-            String maxAge = parts[3].replace("Max Age", "").trim();
-
-            return new String[]{neededPosition, playingStyle, maxBudget, maxAge};
-
-        } catch (Exception ex) {
-            System.out.println("[ACL] ClubAnalysisAgent failed to parse transfer need. Using default values.");
-
-            return new String[]{"DefensiveMidfielder", "Possession", "60000000", "27"};
-        }
     }
 }
