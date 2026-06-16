@@ -87,38 +87,25 @@ public class OntologyManagerAgent extends Agent {
     }
 
     private TransferNeedContext resolveTransferNeedContext(String content) {
-        if (content != null && content.startsWith("TRANSFER_NEED_ID|")) {
-            Long transferNeedId = Long.parseLong(content.split("\\|")[1].trim());
-
-            TransferNeedRepository transferNeedRepository =
-                    SpringContext.getBean(TransferNeedRepository.class);
-
-            TransferNeedEntity transferNeed = transferNeedRepository
-                    .findById(transferNeedId)
-                    .orElseThrow(() -> new IllegalArgumentException(
-                            "Transfer need not found with id: " + transferNeedId
-                    ));
-
-            return new TransferNeedContext(
-                    transferNeed.getNeededPosition(),
-                    transferNeed.getPlayingStyle(),
-                    "TransferNeedId: " + transferNeedId
-            );
+        if (content == null || !content.startsWith("TRANSFER_NEED_ID|")) {
+            throw new IllegalArgumentException("Unsupported ontology query content: " + content);
         }
 
-        String[] queryParts = content.split("\\|");
+        Long transferNeedId = Long.parseLong(content.split("\\|")[1].trim());
+
+        TransferNeedRepository transferNeedRepository =
+                SpringContext.getBean(TransferNeedRepository.class);
+
+        TransferNeedEntity transferNeed = transferNeedRepository
+                .findById(transferNeedId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Transfer need not found with id: " + transferNeedId
+                ));
 
         return new TransferNeedContext(
-                queryParts[0].trim(),
-                queryParts[1].trim(),
-                "TransferNeed: "
-                        + queryParts[0].trim()
-                        + "|"
-                        + queryParts[1].trim()
-                        + "|"
-                        + queryParts[2].trim()
-                        + "|"
-                        + queryParts[3].trim()
+                transferNeed.getNeededPosition(),
+                transferNeed.getPlayingStyle(),
+                "TransferNeedId: " + transferNeedId
         );
     }
 

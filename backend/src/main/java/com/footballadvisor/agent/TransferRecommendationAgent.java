@@ -3,16 +3,10 @@ package com.footballadvisor.agent;
 import com.footballadvisor.config.SpringContext;
 import com.footballadvisor.dto.RecommendationResponse;
 import com.footballadvisor.entity.PlayerEntity;
-import com.footballadvisor.entity.TransferNeedEntity;
-import com.footballadvisor.recommendation.RecommendationEngine;
-import com.footballadvisor.recommendation.RecommendationScore;
-import com.footballadvisor.repository.PlayerRepository;
 import com.footballadvisor.service.RecommendationService;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
 
-import java.math.BigDecimal;
-import java.util.Comparator;
 import java.util.List;
 
 public class TransferRecommendationAgent extends Agent {
@@ -70,20 +64,16 @@ public class TransferRecommendationAgent extends Agent {
         try {
             Long transferNeedId = extractTransferNeedId(content);
 
-            if (transferNeedId != null) {
-                RecommendationService recommendationService =
-                        SpringContext.getBean(RecommendationService.class);
+            RecommendationService recommendationService =
+                    SpringContext.getBean(RecommendationService.class);
 
-                List<RecommendationResponse> recommendations =
-                        recommendationService.generateRecommendations(transferNeedId)
-                                .stream()
-                                .limit(3)
-                                .toList();
+            List<RecommendationResponse> recommendations =
+                    recommendationService.generateRecommendations(transferNeedId)
+                            .stream()
+                            .limit(3)
+                            .toList();
 
-                return formatRecommendationResponses(recommendations);
-            }
-
-            return generateLegacyRecommendationResult(content);
+            return formatRecommendationResponses(recommendations);
 
         } catch (Exception ex) {
             return "Failed to generate recommendations: " + ex.getMessage();
@@ -94,7 +84,7 @@ public class TransferRecommendationAgent extends Agent {
         String marker = "TransferNeedId:";
 
         if (content == null || !content.contains(marker)) {
-            return null;
+            throw new IllegalArgumentException("TransferNeedId not found in ACL message.");
         }
 
         String value = content.substring(content.indexOf(marker) + marker.length()).trim();
@@ -131,94 +121,5 @@ public class TransferRecommendationAgent extends Agent {
         }
 
         return response.toString();
-    }
-
-    private String generateLegacyRecommendationResult(String content) {
-        String transferNeedData = extractLegacyTransferNeedData(content);
-        String[] parts = transferNeedData.split("\\|");
-
-        String neededPosition = parts[0].trim();
-        String playingStyle = parts[1].trim();
-        BigDecimal maxBudget = new BigDecimal(parts[2].trim());
-        Integer maxAge = Integer.parseInt(parts[3].trim());
-
-        TransferNeedEntity transferNeed = TransferNeedEntity.builder()
-                .neededPosition(neededPosition)
-                .playingStyle(playingStyle)
-                .maxBudget(maxBudget)
-                .maxAge(maxAge)
-                .build();
-
-        PlayerRepository playerRepository = SpringContext.getBean(PlayerRepository.class);
-        RecommendationEngine recommendationEngine = SpringContext.getBean(RecommendationEngine.class);
-
-        List<PlayerRecommendationResult> results = playerRepository.findAll()
-                .stream()
-                .map(player -> {
-                    RecommendationScore score = recommendationEngine.calculate(transferNeed, player);
-                    return new PlayerRecommendationResult(player, score);
-                })
-                .sorted(Comparator.comparing(
-                        result -> result.score().getTotalScore(),
-                        Comparator.reverseOrder()
-                ))
-                .limit(3)
-                .toList();
-
-        if (results.isEmpty()) {
-            return "No players found in database.";
-        }
-
-        StringBuilder response = new StringBuilder("Top transfer recommendations:\n");
-
-        for (int i = 0; i < results.size(); i++) {
-            PlayerRecommendationResult result = results.get(i);
-            PlayerEntity player = result.player();
-            RecommendationScore score = result.score();
-
-            response.append(i + 1)
-                    .append(". ")
-                    .append(player.getName())
-                    .append(" | Position: ")
-                    .append(player.getPosition())
-                    .append(" | Age: ")
-                    .append(player.getAge())
-                    .append(" | Market Value: ")
-                    .append(player.getMarketValue())
-                    .append(" | Total Score: ")
-                    .append(String.format("%.2f", score.getTotalScore()))
-                    .append("%")
-                    .append(" | Position Match: ")
-                    .append(String.format("%.2f", score.getPositionMatch()))
-                    .append("%")
-                    .append(" | Style Match: ")
-                    .append(String.format("%.2f", score.getStyleMatch()))
-                    .append("%")
-                    .append(" | Budget Match: ")
-                    .append(String.format("%.2f", score.getBudgetMatch()))
-                    .append("%")
-                    .append(" | Age Match: ")
-                    .append(String.format("%.2f", score.getAgeMatch()))
-                    .append("%")
-                    .append("\n");
-        }
-
-        return response.toString();
-    }
-
-    private String extractLegacyTransferNeedData(String content) {
-        String marker = "TransferNeed:";
-
-        if (!content.contains(marker)) {
-            throw new IllegalArgumentException("TransferNeed data not found in ACL message.");
-        }
-
-        return content.substring(content.indexOf(marker) + marker.length()).trim();
-    }
-
-    private record PlayerRecommendationResult(
-            PlayerEntity player,
-            RecommendationScore score
-    ) {
     }
 }
