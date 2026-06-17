@@ -4,7 +4,7 @@ import { Recommendation } from "../types/recommendation";
 import { TransferNeed } from "../types/transferNeed";
 import { getAllClubs } from "../services/clubService";
 import { createTransferNeed } from "../services/transferNeedService";
-import { generateRecommendations } from "../services/recommendationService";
+import { getRecommendations } from "../services/recommendationService";
 import {
     getOntologyIndividualsByClass,
     getRelatedOntologyTargets,
@@ -79,6 +79,9 @@ const resolveClubStyle = (
 
     return fallbackStyle;
 };
+
+const wait = (milliseconds: number) =>
+    new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 
 export default function PlayerRecommendationPage() {
     const [clubs, setClubs] = useState<Club[]>([]);
@@ -240,19 +243,28 @@ export default function PlayerRecommendationPage() {
                 formData
             );
 
-            const data = await generateRecommendations(createdTransferNeed.id!);
+            await startAgentTransferAnalysis(createdTransferNeed.id!);
+
+            let data: Recommendation[] = [];
+
+            for (let attempt = 0; attempt < 10; attempt++) {
+                data = await getRecommendations(createdTransferNeed.id!);
+
+                if (data.length > 0) {
+                    break;
+                }
+
+                await wait(500);
+            }
+
             setRecommendations(data.slice(0, 3));
             setFeedback({
-                type: "success",
+                type: data.length > 0 ? "success" : "warning",
                 message:
-                    "Recommendations generated. Agent ACL flow was started for the same transfer need.",
+                    data.length > 0
+                        ? "Agent flow generated recommendations for this transfer need."
+                        : "Agent flow started, but no eligible recommendations were available yet. Check Agent Logs for details.",
             });
-
-            try {
-                await startAgentTransferAnalysis(createdTransferNeed.id!);
-            } catch (error) {
-                console.error("Failed to start agent ACL flow", error);
-            }
         } catch {
             setFeedback({
                 type: "error",
@@ -271,8 +283,8 @@ export default function PlayerRecommendationPage() {
                     <p className="page-kicker">Decision support</p>
                     <h1 className="page-title">Recommend Player</h1>
                     <p className="page-description">
-                        Build a transfer need, rank candidates with
-                        ontology-based football knowledge, and review the top
+                        Build a transfer need, let JADE agents coordinate the
+                        ontology and recommendation steps, and review the top
                         matches.
                     </p>
                 </div>
@@ -439,8 +451,8 @@ export default function PlayerRecommendationPage() {
 
                         <button type="submit" disabled={isLoading}>
                             {isLoading
-                                ? "Generating recommendations..."
-                                : "Generate Recommendations"}
+                                ? "Running agent analysis..."
+                                : "Run Agent Recommendation"}
                         </button>
                     </form>
                 </section>
