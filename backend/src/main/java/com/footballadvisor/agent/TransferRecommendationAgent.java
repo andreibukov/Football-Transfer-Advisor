@@ -29,12 +29,6 @@ public class TransferRecommendationAgent extends Agent {
                             + ACLMessage.getPerformative(message.getPerformative())
                             + " | "
                             + message.getContent());
-                    AgentAclLogger.log(
-                            sender,
-                            getLocalName(),
-                            message.getPerformative(),
-                            message.getContent()
-                    );
 
                     String recommendationResult = generateRecommendationResult(message.getContent());
 

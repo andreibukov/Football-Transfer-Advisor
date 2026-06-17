@@ -25,12 +25,6 @@ public class ClubAnalysisAgent extends Agent {
                             + performative
                             + " | "
                             + message.getContent());
-                    AgentAclLogger.log(
-                            sender,
-                            getLocalName(),
-                            message.getPerformative(),
-                            message.getContent()
-                    );
 
                     if (message.getPerformative() == ACLMessage.REQUEST) {
                         ACLMessage ontologyQuery = new ACLMessage(ACLMessage.QUERY_REF);

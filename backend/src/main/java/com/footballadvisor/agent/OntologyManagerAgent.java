@@ -29,12 +29,6 @@ public class OntologyManagerAgent extends Agent {
                             + ACLMessage.getPerformative(message.getPerformative())
                             + " | "
                             + message.getContent());
-                    AgentAclLogger.log(
-                            sender,
-                            getLocalName(),
-                            message.getPerformative(),
-                            message.getContent()
-                    );
 
                     OntologyQueryService ontologyQueryService =
                             SpringContext.getBean(OntologyQueryService.class);

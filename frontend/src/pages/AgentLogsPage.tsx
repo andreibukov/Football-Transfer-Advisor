@@ -66,16 +66,23 @@ const getStepTitle = (log: AgentLog) => {
 
     if (
         sender === "OntologyManagerAgent" &&
+        receiver === "ClubAnalysisAgent"
+    ) {
+        return "3. Ontology context returned";
+    }
+
+    if (
+        sender === "ClubAnalysisAgent" &&
         receiver === "TransferRecommendationAgent"
     ) {
-        return "3. Ontology context sent";
+        return "4. Recommendation requested";
     }
 
     if (
         sender === "TransferRecommendationAgent" &&
         receiver === "ClubAnalysisAgent"
     ) {
-        return "4. Recommendation result returned";
+        return "5. Recommendation result returned";
     }
 
     return `${sender} communicated with ${receiver}`;
@@ -196,10 +203,14 @@ export default function AgentLogsPage() {
                     </div>
                     <div className="metric-card">
                         <p className="metric-value">3</p>
-                        <p className="metric-label">Ontology agent explains knowledge</p>
+                        <p className="metric-label">Ontology agent returns context</p>
                     </div>
                     <div className="metric-card">
                         <p className="metric-value">4</p>
+                        <p className="metric-label">Club agent asks recommendation agent</p>
+                    </div>
+                    <div className="metric-card">
+                        <p className="metric-value">5</p>
                         <p className="metric-label">Recommendation agent returns result</p>
                     </div>
                 </div>
