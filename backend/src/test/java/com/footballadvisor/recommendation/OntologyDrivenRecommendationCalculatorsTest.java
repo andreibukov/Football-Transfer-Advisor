@@ -45,12 +45,15 @@ class OntologyDrivenRecommendationCalculatorsTest {
             new RecommendationViabilityService(scoringWeightProvider);
 
     @Test
-    void calculatesRelatedPositionFromOntologyParentClass() {
+    void calculatesRelatedPositionFromOntologyKnowledge() {
         double score = positionMatchCalculator.calculate("Striker", "LeftWinger");
 
-        assertThat(score).isEqualTo(60);
-        assertThat(positionMatchCalculator.calculate("LeftBack", "RightBack")).isEqualTo(60);
-        assertThat(positionMatchCalculator.calculate("LeftBack", "CenterBack")).isEqualTo(60);
+        assertThat(score).isEqualTo(75);
+        assertThat(positionMatchCalculator.calculate("LeftBack", "RightBack")).isEqualTo(75);
+        assertThat(positionMatchCalculator.calculate("LeftBack", "CenterBack")).isEqualTo(75);
+        assertThat(positionMatchCalculator.calculate("Striker", "RightWinger")).isEqualTo(75);
+        assertThat(positionMatchCalculator.calculate("LeftWinger", "RightWinger")).isEqualTo(75);
+        assertThat(positionMatchCalculator.calculate("LeftWinger", "Striker")).isEqualTo(75);
         assertThat(positionMatchCalculator.calculate("Goalkeeper", "CentralMidfielder")).isEqualTo(0);
     }
 
@@ -108,6 +111,27 @@ class OntologyDrivenRecommendationCalculatorsTest {
     }
 
     @Test
+    void loadsOntologyKnowledgeAboutPositionAndStyleCompatibility() {
+        assertThat(ontologyQueryService.areRelatedByObjectProperty(
+                "LeftBack",
+                "CenterBack",
+                "isSimilarPositionTo"
+        )).isTrue();
+
+        assertThat(ontologyQueryService.areRelatedByObjectProperty(
+                "HighPress",
+                "Gegenpressing",
+                "isCompatibleStyleWith"
+        )).isTrue();
+
+        assertThat(ontologyQueryService.areRelatedByObjectProperty(
+                "Possession",
+                "TikiTaka",
+                "isCompatibleStyleWith"
+        )).isTrue();
+    }
+
+    @Test
     void loadsScoringWeightsFromOntologyProfile() {
         ScoringWeights weights = scoringWeightProvider.getDefaultWeights();
 
@@ -136,6 +160,9 @@ class OntologyDrivenRecommendationCalculatorsTest {
 
         OWLObjectProperty belongsToClub = dataFactory.getOWLObjectProperty(IRI.create(BASE_IRI + "belongsToClub"));
         OWLObjectProperty hasPlayer = dataFactory.getOWLObjectProperty(IRI.create(BASE_IRI + "hasPlayer"));
+        OWLObjectProperty isSimilarPositionTo = dataFactory.getOWLObjectProperty(
+                IRI.create(BASE_IRI + "isSimilarPositionTo")
+        );
         OWLDataProperty hasAgeMatchWeight = dataFactory.getOWLDataProperty(IRI.create(BASE_IRI + "hasAgeMatchWeight"));
 
         assertThat(ontology.getAxioms(AxiomType.DISJOINT_CLASSES))
@@ -152,6 +179,10 @@ class OntologyDrivenRecommendationCalculatorsTest {
 
         assertThat(ontology.getAxioms(AxiomType.FUNCTIONAL_OBJECT_PROPERTY))
                 .anySatisfy(axiom -> assertThat(axiom.getObjectPropertiesInSignature()).contains(belongsToClub));
+
+        assertThat(ontology.getAxioms(AxiomType.SYMMETRIC_OBJECT_PROPERTY))
+                .anySatisfy(axiom -> assertThat(axiom.getObjectPropertiesInSignature())
+                        .contains(isSimilarPositionTo));
 
         assertThat(ontology.getAxioms(AxiomType.DATA_PROPERTY_DOMAIN))
                 .anySatisfy(axiom -> assertThat(axiom.getDataPropertiesInSignature()).contains(hasAgeMatchWeight));

@@ -19,6 +19,14 @@ public class PositionMatchCalculator {
             return 100;
         }
 
+        if (ontologyQueryService.areRelatedByObjectProperty(
+                neededPosition,
+                playerPosition,
+                "isSimilarPositionTo"
+        )) {
+            return 75;
+        }
+
         if (ontologyQueryService.shareDirectParentClass(neededPosition, playerPosition)) {
             return 60;
         }

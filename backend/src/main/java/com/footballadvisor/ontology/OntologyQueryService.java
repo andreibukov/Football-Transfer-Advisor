@@ -91,6 +91,19 @@ public class OntologyQueryService {
         return !firstParents.isEmpty();
     }
 
+    public boolean areRelatedByObjectProperty(
+            String firstConceptName,
+            String secondConceptName,
+            String propertyName
+    ) {
+        if (firstConceptName == null || secondConceptName == null || propertyName == null) {
+            return false;
+        }
+
+        return hasObjectPropertyRelation(firstConceptName, secondConceptName, propertyName)
+                || hasObjectPropertyRelation(secondConceptName, firstConceptName, propertyName);
+    }
+
     public List<String> findIndividualsByClass(String className) {
         OWLOntology ontology = ontologyLoader.loadOntology();
         List<String> results = new ArrayList<>();
@@ -143,6 +156,16 @@ public class OntologyQueryService {
         }
 
         return OptionalDouble.empty();
+    }
+
+    private boolean hasObjectPropertyRelation(
+            String sourceConceptName,
+            String targetConceptName,
+            String propertyName
+    ) {
+        return findRelatedAttributes(sourceConceptName, propertyName)
+                .stream()
+                .anyMatch(relatedConceptName -> relatedConceptName.equalsIgnoreCase(targetConceptName));
     }
 
     private Set<String> findDirectParentClasses(OWLOntology ontology, String className) {
