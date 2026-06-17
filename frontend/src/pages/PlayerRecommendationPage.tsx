@@ -83,6 +83,31 @@ const resolveClubStyle = (
 const wait = (milliseconds: number) =>
     new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 
+const lastRecommendationsStorageKey = "footballAdvisor:lastRecommendations";
+
+const loadStoredRecommendations = (): Recommendation[] => {
+    if (typeof window === "undefined") {
+        return [];
+    }
+
+    try {
+        const storedRecommendations = window.localStorage.getItem(
+            lastRecommendationsStorageKey
+        );
+
+        return storedRecommendations ? JSON.parse(storedRecommendations) : [];
+    } catch {
+        return [];
+    }
+};
+
+const storeRecommendations = (recommendations: Recommendation[]) => {
+    window.localStorage.setItem(
+        lastRecommendationsStorageKey,
+        JSON.stringify(recommendations)
+    );
+};
+
 export default function PlayerRecommendationPage() {
     const [clubs, setClubs] = useState<Club[]>([]);
     const [positions, setPositions] = useState<string[]>([]);
@@ -90,7 +115,9 @@ export default function PlayerRecommendationPage() {
     const [playerRoles, setPlayerRoles] = useState<string[]>([]);
     const [selectedLeague, setSelectedLeague] = useState<string>("");
     const [selectedClubId, setSelectedClubId] = useState<number>(0);
-    const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
+    const [recommendations, setRecommendations] = useState<Recommendation[]>(
+        loadStoredRecommendations
+    );
     const [isLoading, setIsLoading] = useState(false);
     const [feedback, setFeedback] = useState<Feedback | null>(null);
 
@@ -257,7 +284,13 @@ export default function PlayerRecommendationPage() {
                 await wait(500);
             }
 
-            setRecommendations(data.slice(0, 3));
+            const topRecommendations = data.slice(0, 3);
+
+            if (topRecommendations.length > 0) {
+                setRecommendations(topRecommendations);
+                storeRecommendations(topRecommendations);
+            }
+
             setFeedback({
                 type: data.length > 0 ? "success" : "warning",
                 message:

@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 public class AgentOrchestrationService {
 
     private final AgentContainer jadeContainer;
+    private final AgentLogService agentLogService;
 
     public String startTransferAnalysis(Long transferNeedId) {
+        agentLogService.clearLogs();
+
         String content = "TRANSFER_NEED_ID|" + transferNeedId;
 
         return startAclFlow(content);

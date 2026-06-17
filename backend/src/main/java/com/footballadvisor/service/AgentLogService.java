@@ -32,4 +32,8 @@ public class AgentLogService {
     public List<AgentLogEntity> getAllLogs() {
         return agentLogRepository.findAll();
     }
+
+    public void clearLogs() {
+        agentLogRepository.deleteAll();
+    }
 }
