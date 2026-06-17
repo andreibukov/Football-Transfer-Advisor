@@ -15,11 +15,6 @@ public class RecommendationController {
 
     private final RecommendationService recommendationService;
 
-    @PostMapping
-    public List<RecommendationResponse> generateRecommendations(@PathVariable Long transferNeedId) {
-        return recommendationService.generateRecommendations(transferNeedId);
-    }
-
     @GetMapping
     public List<RecommendationResponse> getRecommendations(@PathVariable Long transferNeedId) {
         return recommendationService.getRecommendations(transferNeedId);
