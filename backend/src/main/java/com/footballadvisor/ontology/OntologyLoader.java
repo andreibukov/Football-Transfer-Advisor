@@ -12,6 +12,10 @@ public class OntologyLoader {
 
     private OWLOntology ontology;
 
+    public void clearCache() {
+        ontology = null;
+    }
+
     public OWLOntology loadOntology() {
         try {
             if (ontology != null) {

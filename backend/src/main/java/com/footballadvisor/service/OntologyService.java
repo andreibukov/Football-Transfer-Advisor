@@ -2,6 +2,7 @@ package com.footballadvisor.service;
 
 import com.footballadvisor.entity.OntologyConceptEntity;
 import com.footballadvisor.entity.OntologyRelationEntity;
+import com.footballadvisor.ontology.OntologyFileMutationService;
 import com.footballadvisor.repository.OntologyConceptRepository;
 import com.footballadvisor.repository.OntologyRelationRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,12 +16,18 @@ public class OntologyService {
 
     private final OntologyConceptRepository ontologyConceptRepository;
     private final OntologyRelationRepository ontologyRelationRepository;
+    private final OntologyFileMutationService ontologyFileMutationService;
 
     public List<OntologyConceptEntity> getAllConcepts() {
         return ontologyConceptRepository.findAll();
     }
 
     public OntologyConceptEntity addConcept(OntologyConceptEntity concept) {
+        ontologyFileMutationService.addConcept(
+                concept.getConceptName(),
+                concept.getConceptType()
+        );
+
         return ontologyConceptRepository.save(concept);
     }
 
@@ -37,6 +44,12 @@ public class OntologyService {
     }
 
     public OntologyRelationEntity addRelation(OntologyRelationEntity relation) {
+        ontologyFileMutationService.addRelation(
+                relation.getSourceConcept(),
+                relation.getRelationType(),
+                relation.getTargetConcept()
+        );
+
         return ontologyRelationRepository.save(relation);
     }
 
